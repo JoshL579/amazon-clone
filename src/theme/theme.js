@@ -6,8 +6,12 @@ export const theme = createTheme({
         light: '#232f3e',
         main: '#131921',
     },
-    // secondary: {
-    //   main: green[500],
-    // },
+    secondary: {
+      main: '#febd69',
+    },
+    grey: {
+      main: '#f3f3f3',
+      contrastText: '#000'
+    }
   },
 })
