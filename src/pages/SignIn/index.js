@@ -8,44 +8,69 @@ import {
   CardContent,
   Grid,
   Box,
+  Paper,
+  Avatar,
+  BottomNavigation,
+  BottomNavigationAction,
 } from "@mui/material";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+
+const paperStyle = {
+  padding: 20,
+  height: "45vh",
+  width: 450,
+  margin: "20px auto",
+};
 
 const SignIn = () => {
   return (
-    <div>
-      <Box component="img" src={logo}></Box>
-      <Card style={{ maxWidth: 450, margin: "auto", padding: "20px 25px" }}>
-        <CardContent>
-          <Typography variant="h4" gutterBottom>
-            Sign-In
-          </Typography>
-          <Typography gutterBottom>Email of mobile phone number</Typography>
-          <form>
-            <Grid container>
-              <Grid xs={12} item>
-                <TextField variant="outlined" fullWidth></TextField>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="secondary"
-                  fullWidth
-                >
-                  Submit
-                </Button>
-                <Typography gutterBottom>
-                  By continuing, you agree to Amazon's Conditions of Use and
-                  Privacy Notice.
-                </Typography>
-                <Typography gutterBottom>Need help?</Typography>
-              </Grid>
-            </Grid>
-          </form>
-        </CardContent>
-      </Card>
-      <Button type="submit" variant="contained" color="grey" fullWidth>
+    <Grid>
+      <Box
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
+        <img src={logo}></img>
+      </Box>
+      <Paper elevation={3} style={paperStyle}>
+        <Typography variant="h4" sx={{ fontWeight: 700, marginBottom: 2 }}>
+          Sign In
+        </Typography>
+        <Typography variant="h6" sx={{ fontWeight: 700 }}>
+          Email of mobile phone number
+        </Typography>
+        <TextField fullWidth required sx={{ marginBottom: 2 }}></TextField>
+        <Button
+          sx={{ padding: 1.5, marginBottom: 5 }}
+          type="submit"
+          variant="contained"
+          color="secondary"
+          fullWidth
+        >
+          Continue
+        </Button>
+        <Typography sx={{ marginBottom: 3 }}>
+          By continuing, you agree to Amazon's Conditions of Use and Privacy
+          Notice.
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <ArrowRightIcon />
+          <Typography>Need help?</Typography>
+        </Box>
+      </Paper>
+      <Button type="submit" variant="contained" color="grey">
         Create Your Amazon account
       </Button>
-    </div>
+      <BottomNavigation showLabels>
+        <BottomNavigationAction label=" Conditions of Use " />
+        <BottomNavigationAction label=" Privacy Notice " />
+        <BottomNavigationAction label=" Help " />
+      </BottomNavigation>
+      <Typography align="center">© 1996-2022, Amazon.com, Inc. or its affiliates</Typography>
+    </Grid>
   );
 };
 
