@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Link } from '@mui/material'
+import { Button, Box, Tooltip } from '@mui/material'
 import { theme } from '../theme/theme'
 
 const styles = {
@@ -11,24 +11,38 @@ const styles = {
       border: '1px solid #fff',
     },
   },
+  popover: {
+    backgroundColor: '#fff',
+  },
 }
 
 export const HeaderButton = (props) => {
   return (
-    <Button
-      variant="contained"
-      sx={styles.root}
-    >
+    <Button variant="contained" sx={styles.root} {...props}>
       {props.children}
     </Button>
   )
 }
 
-export const HeaderLinkImg = (props) => {
-  const handleRedirect = () => {
-    window.location.href = props.href
-  }
+export const HeaderButtonWrapper = (props) => {
   return (
-    <Link sx={{ ...styles.root, ...props.sx }} onClick={handleRedirect}></Link>
+    <Box sx={{ ...styles.root }} {...props}>
+      {props.children}
+    </Box>
+  )
+}
+
+export const HeaderPopover = (props) => {
+  return (
+    <Tooltip
+      arrow
+      title={props.popover}
+      {...props}
+      // PopperProps={{ sx: styles.popover }}
+    >
+      <Button variant="contained" sx={styles.root} {...props} popover={null}>
+        {props.children}
+      </Button>
+    </Tooltip>
   )
 }

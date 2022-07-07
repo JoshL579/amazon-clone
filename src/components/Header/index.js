@@ -1,10 +1,10 @@
-import { AppBar, Toolbar, Box, Button, Grid } from '@mui/material'
+import { AppBar, Toolbar, Box, Button, Grid, Link } from '@mui/material'
 import React from 'react'
 import logo from '../../assets/img/Header/logo.png'
 import { SearchBar } from './SearchBar'
 import { LanguageSelection } from './LanguageSelection'
 import { AccountDropdown } from './AccountDropDown'
-import { HeaderButton, HeaderLinkImg } from '../../modules/HeaderButton'
+import { HeaderButton, HeaderButtonWrapper } from '../../modules/HeaderButton'
 
 const styles = {
   container: {
@@ -23,7 +23,7 @@ const styles = {
     marginTop: '12px',
   },
   gridItemLeft: {
-    flexBasis: 200,
+    flexBasis: 250,
   },
 }
 
@@ -32,10 +32,12 @@ export default function Header() {
     <AppBar position="static" sx={styles.container} align="center">
       <Toolbar>
         <Grid container direction="row">
-          <Grid item container sx={styles.gridItemLeft}>
-            <HeaderLinkImg sx={styles.logo} />
+            <HeaderButtonWrapper sx={{marginRight: 1, padding: '1px 8px 0 0'}}>
+              <Link href="/">
+                <Box sx={styles.logo} />
+              </Link>
+            </HeaderButtonWrapper>
             <HeaderButton variant="contained">Canada</HeaderButton>
-          </Grid>
 
           <SearchBar />
 
