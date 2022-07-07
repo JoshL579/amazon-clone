@@ -15,8 +15,8 @@ import { Link } from "react-router-dom";
 
 const paperStyle = {
   padding: 20,
-  height: "45vh",
-  width: 450,
+  height: "33vh",
+  width: 300,
   margin: "20px auto",
 };
 
@@ -29,15 +29,21 @@ const SignIn = () => {
         <img src={logo} style={{ width: 120 }}></img>
       </Box>
       <Paper elevation={3} style={paperStyle}>
-        <Typography variant="h4" sx={{ fontWeight: 700, marginBottom: 2 }}>
+        <Typography variant="h5" sx={{ fontWeight: 700, marginBottom: 2 }}>
           Sign In
         </Typography>
-        <Typography variant="h6" sx={{ fontWeight: 700 }}>
+        <Typography variant="h7" sx={{ fontWeight: 700 }}>
           Email of mobile phone number
         </Typography>
-        <TextField fullWidth required sx={{ marginBottom: 2 }}></TextField>
+        <TextField
+          size="small"
+          color="warning"
+          fullWidth
+          required
+          sx={{ marginBottom: 1 }}
+        ></TextField>
         <Button
-          sx={{ padding: 1.5, marginBottom: 5 }}
+          sx={{ marginBottom: 3, fontSize: 11 }}
           type="submit"
           variant="contained"
           color="secondary"
@@ -45,7 +51,7 @@ const SignIn = () => {
         >
           Continue
         </Button>
-        <Typography sx={{ marginBottom: 3 }}>
+        <Typography variant="body2" sx={{ marginBottom: 3 }}>
           By continuing, you agree to Amazon's Conditions of Use and Privacy
           Notice.
         </Typography>
@@ -56,7 +62,7 @@ const SignIn = () => {
           }}
         >
           <ArrowRightIcon />
-          <Typography>Need help?</Typography>
+          <Typography variant="body2">Need help?</Typography>
         </Box>
       </Paper>
       <Box textAlign="center">
@@ -65,7 +71,7 @@ const SignIn = () => {
             type="submit"
             variant="contained"
             color="grey"
-            sx={{ width: 490 }}
+            sx={{ width: 340, padding:1, fontSize:11 }}
           >
             Create Your Amazon account
           </Button>
@@ -76,7 +82,7 @@ const SignIn = () => {
         <BottomNavigationAction label=" Privacy Notice " />
         <BottomNavigationAction label=" Help " />
       </BottomNavigation>
-      <Typography align="center">
+      <Typography align="center" fontSize={12}>
         © 1996-2022, Amazon.com, Inc. or its affiliates
       </Typography>
     </Grid>
