@@ -1,7 +1,7 @@
 import { Grid, Paper, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-import categories from "../../data/data.json";
+import categories from "../../../data/data.json"
 
 const styles = {
   p: {
