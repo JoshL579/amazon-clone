@@ -4,16 +4,14 @@ import {
   Button,
   Typography,
   TextField,
-  Card,
-  CardContent,
   Grid,
   Box,
   Paper,
-  Avatar,
   BottomNavigation,
   BottomNavigationAction,
 } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import { Link } from "react-router-dom";
 
 const paperStyle = {
   padding: 20,
@@ -28,7 +26,7 @@ const SignIn = () => {
       <Box
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       >
-        <img src={logo}></img>
+        <img src={logo} style={{ width: 120 }}></img>
       </Box>
       <Paper elevation={3} style={paperStyle}>
         <Typography variant="h4" sx={{ fontWeight: 700, marginBottom: 2 }}>
@@ -61,15 +59,26 @@ const SignIn = () => {
           <Typography>Need help?</Typography>
         </Box>
       </Paper>
-      <Button type="submit" variant="contained" color="grey">
-        Create Your Amazon account
-      </Button>
+      <Box textAlign="center">
+        <Link to="/signup" style={{ textDecoration: "none" }}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="grey"
+            sx={{ width: 490 }}
+          >
+            Create Your Amazon account
+          </Button>
+        </Link>
+      </Box>
       <BottomNavigation showLabels>
         <BottomNavigationAction label=" Conditions of Use " />
         <BottomNavigationAction label=" Privacy Notice " />
         <BottomNavigationAction label=" Help " />
       </BottomNavigation>
-      <Typography align="center">© 1996-2022, Amazon.com, Inc. or its affiliates</Typography>
+      <Typography align="center">
+        © 1996-2022, Amazon.com, Inc. or its affiliates
+      </Typography>
     </Grid>
   );
 };
