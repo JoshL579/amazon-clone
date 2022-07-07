@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Popover, Typography } from '@mui/material'
+import { HeaderButton } from '../../modules/HeaderButton'
 
 const styles = {
   content: {
@@ -23,14 +24,14 @@ export const AccountDropdown = () => {
 
   return (
     <>
-      <Button
+      <HeaderButton
         aria-describedby={id}
         variant="contained"
         onMouseEnter={handleClick}
         // onMouseLeave={handleClose}
       >
         Account & Lists
-      </Button>
+      </HeaderButton>
       <Popover
         id={id}
         open={open}

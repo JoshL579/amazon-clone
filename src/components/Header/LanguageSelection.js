@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Popover, Typography, Button } from '@mui/material'
+import { HeaderButton } from '../../modules/HeaderButton'
 
 const styles = {
   content: {
@@ -23,14 +24,14 @@ export const LanguageSelection = () => {
 
   return (
     <>
-      <Button
+      <HeaderButton
         aria-describedby={id}
         variant="contained"
         onMouseEnter={handleClick}
         // onMouseLeave={handleClose}
       >
         Language
-      </Button>
+      </HeaderButton>
       <Popover
         id={id}
         open={open}

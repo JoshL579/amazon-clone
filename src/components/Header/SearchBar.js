@@ -13,12 +13,16 @@ import { theme } from '../../theme/theme'
 const styles = {
   root: {
     width: '100%',
+    alignSelf: 'center',
   },
   input: {
     backgroundColor: '#fff',
     width: 'calc(100% - 120px)',
     '& > div': {
       width: '100%',
+      '&:hover': {
+        border: 'none'
+      },
       '& > div': {
         borderRadius: 0,
       },
@@ -33,7 +37,7 @@ const styles = {
       minWidth: '52px',
       color: '#555',
       textTransform: 'none',
-      fontWeight: 300
+      fontWeight: 300,
     },
   },
   search: {
@@ -56,7 +60,15 @@ export const SearchBar = () => {
     setAnchorEl(null)
   }
   return (
-    <Grid item container direction="row" sx={styles.root}>
+    <Grid
+      item
+      container
+      xs
+      direction="row"
+      align="center"
+      justifyContent="center"
+      sx={styles.root}
+    >
       <Grid item sx={styles.dropdownBtn}>
         <Button
           variant="contained"
@@ -82,7 +94,7 @@ export const SearchBar = () => {
         </Menu>
       </Grid>
       <Grid item sx={styles.input}>
-        <TextField variant="outlined" size="small" block />
+        <TextField variant="outlined" size="small" />
       </Grid>
       <Grid item sx={styles.search}>
         <IconButton color="primary">

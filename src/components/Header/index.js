@@ -4,17 +4,26 @@ import logo from '../../assets/img/Header/logo.png'
 import { SearchBar } from './SearchBar'
 import { LanguageSelection } from './LanguageSelection'
 import { AccountDropdown } from './AccountDropDown'
+import { HeaderButton, HeaderLinkImg } from '../../modules/HeaderButton'
 
 const styles = {
   container: {
     height: 60,
     justifyContent: 'center',
+    '& > div': {
+      height: 60,
+      minHeight: 60,
+    },
   },
   logo: {
     backgroundImage: `url(${logo})`,
     backgroundPosition: '-10px -51px',
     width: 97,
     height: 30,
+    marginTop: '12px',
+  },
+  gridItemLeft: {
+    flexBasis: 200,
   },
 }
 
@@ -23,18 +32,18 @@ export default function Header() {
     <AppBar position="static" sx={styles.container} align="center">
       <Toolbar>
         <Grid container direction="row">
-          <Grid item container direction="row" md={1.5}>
-            <Box sx={styles.logo} />
-            <Button variant="contained">Canada</Button>
+          <Grid item container sx={styles.gridItemLeft}>
+            <HeaderLinkImg sx={styles.logo} />
+            <HeaderButton variant="contained">Canada</HeaderButton>
           </Grid>
-          <Grid item xs>
-            <SearchBar />
-          </Grid>
-          <Grid item xs={3}>
+
+          <SearchBar />
+
+          <Grid item>
             <LanguageSelection />
             <AccountDropdown />
-            <Button variant="contained">& Orders</Button>
-            <Button variant="contained">Cart</Button>
+            <HeaderButton variant="contained">& Orders</HeaderButton>
+            <HeaderButton variant="contained">Cart</HeaderButton>
           </Grid>
         </Grid>
       </Toolbar>
