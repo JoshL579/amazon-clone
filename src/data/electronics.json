@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Shop Laptops & Tablets",
+    "note": "See more",
+    "image": "https://via.placeholder.com/300x350.png"
+  },
+  {
+    "id": 2,
+    "title": "Create with strip lights",
+    "note": "Shop now",
+    "image": "https://via.placeholder.com/300x350.png"
+  },
+  {
+    "id": 3,
+    "title": "Kindle E readers",
+    "note": "Shop now",
+    "image": "https://via.placeholder.com/300x350.png"
+  },
+  {
+    "id": 4,
+    "title": "For your Fitness Needs",
+    "note": "See more",
+    "image": "https://via.placeholder.com/300x350.png"
+  }
+]
