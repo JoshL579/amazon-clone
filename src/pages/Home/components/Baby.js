@@ -10,11 +10,11 @@ import "swiper/css/scrollbar";
 import { Navigation, Scrollbar } from "swiper";
 import { Paper, Typography } from "@mui/material";
 
-export default function Popular() {
+export default function Baby() {
   return (
     <Paper sx={{ padding: 2 }}>
       <Typography variant="h6" fontWeight={700}>
-        Popular products in PC internationally
+        Top Sellers in Baby Products for you
       </Typography>
       <Swiper
         slidesPerView={6}

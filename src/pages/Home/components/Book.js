@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import popular from "../../../data/popularPc.json";
+import book from "../../../data/topSellerBook.json";
 
 // Import Swiper styles
 import "swiper/css";
@@ -10,21 +10,21 @@ import "swiper/css/scrollbar";
 import { Navigation, Scrollbar } from "swiper";
 import { Paper, Typography } from "@mui/material";
 
-export default function Popular() {
+export default function Book() {
   return (
     <Paper sx={{ padding: 2 }}>
       <Typography variant="h6" fontWeight={700}>
         Popular products in PC internationally
       </Typography>
       <Swiper
-        slidesPerView={6}
+        slidesPerView={8}
         spaceBetween={30}
         modules={[Navigation, Scrollbar]}
         navigation
         scrollbar={{ draggable: true }}
         style={{ height: 200 }}
       >
-        {popular.map((pc) => {
+        {book.map((pc) => {
           const { image } = pc;
           return (
             <SwiperSlide>
