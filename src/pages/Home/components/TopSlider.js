@@ -1,10 +1,37 @@
-import React from 'react';
+import { Navigation } from "swiper";
 
-export const TopSlider = (props) => {
+import { Swiper, SwiperSlide } from "swiper/react";
 
-    return (
-        <div>
-            
-        </div>
-    )
-}
+import "swiper/css";
+import "swiper/css/navigation";
+
+export default () => {
+  return (
+    <Swiper modules={[Navigation]} navigation style={{ height: 300 }}>
+      <SwiperSlide>
+        <img
+          src="https://via.placeholder.com/1400x300.png"
+          className="img"
+        ></img>
+      </SwiperSlide>
+      <SwiperSlide>
+        <img
+          src="https://via.placeholder.com/1400x300.png"
+          className="img"
+        ></img>
+      </SwiperSlide>
+      <SwiperSlide>
+        <img
+          src="https://via.placeholder.com/1400x300.png"
+          className="img"
+        ></img>
+      </SwiperSlide>
+      <SwiperSlide>
+        <img
+          src="https://via.placeholder.com/1400x300.png"
+          className="img"
+        ></img>
+      </SwiperSlide>
+    </Swiper>
+  );
+};

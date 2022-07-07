@@ -5,7 +5,6 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Header from "./components/Header";
 import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignIn/SignUp";
 import Deal from "./pages/Deal";
 import CustomerService from "./pages/CustomerService";
 import Registry from "./pages/Registry";
