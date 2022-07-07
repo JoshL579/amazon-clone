@@ -16,13 +16,13 @@ export default function Categories() {
         const { image, note, title } = category;
         return (
           <Grid item xs={3}>
-            <Paper>
+            <Paper elevation={2}>
               <Typography variant="h6" fontWeight={700}>{title}</Typography>
               <Link to="/">
                 <img src={image} className="img" />
               </Link>
-              <Typography>
-                <Link to="/">{note}</Link>
+              <Typography >
+                <Link to="/" style={{textDecoration: "none"}}>{note}</Link>
               </Typography>
             </Paper>
           </Grid>
