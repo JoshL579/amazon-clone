@@ -1,10 +1,7 @@
 import { Box, Grid, Paper, Typography } from '@mui/material'
 import React from 'react'
-import Header from '../../components/Header'
-import Book from './components/Book'
 import Categories from './components/Categories'
 import Electronics from './components/Electronics'
-import Popular from './components/Popular'
 import TopSlider from './components/TopSlider'
 import InterTopSellerHome from './components/InterTopSellerHome'
 import InterTopSellerKitchen from './components/InterTOpSellerKitchen'
@@ -14,6 +11,7 @@ import Baby from './components/Baby'
 import Repurchase from './components/Repurchase'
 import History from './components/History'
 import SignInBtn from './components/SignInBtn'
+import { HomeSwiper } from './components/HomeSwiper'
 
 const styles = {
   root: {
@@ -31,8 +29,8 @@ export default function Home() {
       <Grid item container sx={styles.container}>
         <TopSlider />
         <Categories />
-        <Popular />
-        <Book />
+        <HomeSwiper type="popular" />
+        <HomeSwiper type="book" />
         <Electronics />
         <InterTopSellerHome />
         <InterTopSellerKitchen />
