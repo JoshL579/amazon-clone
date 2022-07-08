@@ -33,6 +33,10 @@ export const theme = createTheme({
       fontSize: 14,
       fontWeight: 700
     },
+    body2: {
+      fontSize: 14,
+      fontWeight: 500
+    },
 
     button: {
       textTransform: 'unset',
