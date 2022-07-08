@@ -7,8 +7,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
 import { theme } from "../../theme/theme";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import Sidebar from "./Sidebar";
 
 export default function Navbar() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
   const styles = {
     Typography: {
       mr: 2,
@@ -17,6 +21,17 @@ export default function Navbar() {
     link: {
       textDecoration: "none",
       color: "white",
+    },
+    flex: {
+      display: "flex",
+      alignItems: "center",
+      gap: 2,
+    },
+    avatar: {
+      backgroundColor: theme.palette.grey.main,
+      color: theme.palette.primary.light,
+      width: 25,
+      height: 25,
     },
   };
 
@@ -32,10 +47,15 @@ export default function Navbar() {
             edge="start"
             color="inherit"
             aria-label="menu"
+            onClick={() => setIsDrawerOpen(true)}
           >
             <MenuIcon />
             <Typography variant="h6">All</Typography>
           </IconButton>
+          <Sidebar
+            isDrawerOpen={isDrawerOpen}
+            setIsDrawerOpen={setIsDrawerOpen}
+          />
           <Typography color="inherit" sx={styles.Typography}>
             <Link to="/deal" style={styles.link}>
               Today's Deals
