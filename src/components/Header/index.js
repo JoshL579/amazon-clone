@@ -42,9 +42,7 @@ export default function Header() {
               </Link>
             </HeaderButtonWrapper>
             <HeaderButton variant="contained">Canada</HeaderButton>
-
             <SearchBar />
-
             <Grid item>
               <LanguageSelection />
               <AccountDropdown />
