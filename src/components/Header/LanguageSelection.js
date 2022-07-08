@@ -23,7 +23,7 @@ export const LanguageSelection = () => {
           </Typography>
         }
       >
-        Language
+        <Typography variant="subtitle1">Language</Typography>
       </HeaderPopover>
     </>
   )
