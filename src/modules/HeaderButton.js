@@ -13,6 +13,11 @@ const styles = {
   },
   popover: {
     backgroundColor: '#fff',
+    padding: 0,
+  },
+  popoverArrow: {
+    color: '#fff',
+    fontSize: '1rem',
   },
 }
 
@@ -33,12 +38,23 @@ export const HeaderButtonWrapper = (props) => {
 }
 
 export const HeaderPopover = (props) => {
+  const { width } = props
   return (
     <Tooltip
       arrow
       title={props.popover}
+      componentsProps={{
+        tooltip: {
+          sx: {
+            ...styles.popover,
+            width: width || 'max-content',
+            maxWidth: width || '470px',
+          },
+        },
+        arrow: { sx: styles.popoverArrow },
+      }}
+      enterDelay={500}
       {...props}
-      // PopperProps={{ sx: styles.popover }}
     >
       <Button variant="contained" sx={styles.root} {...props} popover={null}>
         {props.children}

@@ -1,4 +1,12 @@
-import { AppBar, Toolbar, Box, Button, Grid, Link } from '@mui/material'
+import {
+  AppBar,
+  Toolbar,
+  Box,
+  Button,
+  Grid,
+  Link,
+  Typography,
+} from '@mui/material'
 import React from 'react'
 import logo from '../../assets/img/Header/logo.png'
 import { SearchBar } from './SearchBar'
@@ -32,20 +40,26 @@ export default function Header() {
     <AppBar position="static" sx={styles.container} align="center">
       <Toolbar>
         <Grid container direction="row">
-            <HeaderButtonWrapper sx={{marginRight: 1, padding: '1px 8px 0 0'}}>
-              <Link href="/">
-                <Box sx={styles.logo} />
-              </Link>
-            </HeaderButtonWrapper>
-            <HeaderButton variant="contained">Canada</HeaderButton>
+          <HeaderButtonWrapper sx={{ marginRight: 1, padding: '1px 8px 0 0' }}>
+            <Link href="/">
+              <Box sx={styles.logo} />
+            </Link>
+          </HeaderButtonWrapper>
+          <HeaderButton variant="contained">
+            <Typography variant="subtitle1">Canada</Typography>
+          </HeaderButton>
 
           <SearchBar />
 
           <Grid item>
             <LanguageSelection />
             <AccountDropdown />
-            <HeaderButton variant="contained">& Orders</HeaderButton>
-            <HeaderButton variant="contained">Cart</HeaderButton>
+            <HeaderButton variant="contained">
+              <Typography variant="subtitle1">& Orders</Typography>
+            </HeaderButton>
+            <HeaderButton variant="contained">
+              <Typography variant="subtitle1">Cart</Typography>
+            </HeaderButton>
           </Grid>
         </Grid>
       </Toolbar>
