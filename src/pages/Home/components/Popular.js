@@ -8,11 +8,19 @@ import "swiper/css/scrollbar";
 
 // import required modules
 import { Navigation, Scrollbar } from "swiper";
-import { Paper, Typography } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
+
+const styles = {
+  container: {
+    p: '10px',
+    width: '100%',
+    backgroundColor: '#fff',
+  }
+}
 
 export default function Popular() {
   return (
-    <Paper sx={{ padding: 2 }}>
+    <Grid sx={styles.container}>
       <Typography variant="h6" fontWeight={700}>
         Popular products in PC internationally
       </Typography>
@@ -33,6 +41,6 @@ export default function Popular() {
           );
         })}
       </Swiper>
-    </Paper>
+    </Grid>
   );
 }
