@@ -29,6 +29,26 @@ const data = {
     title: 'Top Sellers in Books for you',
     elements: book,
   },
+  home: {
+    title: 'International top sellers in Home',
+    elements: popular,
+  },
+  kitchen: {
+    title: 'International top sellers in Kitchen',
+    elements: popular,
+  },
+  beauty: {
+    title: 'Popular products in Beauty internationally',
+    elements: book,
+  },
+  baby: {
+    title: 'Top Sellers in Baby Products for you',
+    elements: popular,
+  },
+  repurchase: {
+    title: 'Frequently repurchased in Supplies',
+    elements: popular,
+  },
 }
 
 export const HomeSwiper = (props) => {

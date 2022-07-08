@@ -3,12 +3,7 @@ import React from 'react'
 import Categories from './components/Categories'
 import Electronics from './components/Electronics'
 import TopSlider from './components/TopSlider'
-import InterTopSellerHome from './components/InterTopSellerHome'
-import InterTopSellerKitchen from './components/InterTOpSellerKitchen'
 import Game from './components/Game'
-import Beauty from './components/Beauty'
-import Baby from './components/Baby'
-import Repurchase from './components/Repurchase'
 import History from './components/History'
 import SignInBtn from './components/SignInBtn'
 import { HomeSwiper } from './components/HomeSwiper'
@@ -32,12 +27,12 @@ export default function Home() {
         <HomeSwiper type="popular" />
         <HomeSwiper type="book" />
         <Electronics />
-        <InterTopSellerHome />
-        <InterTopSellerKitchen />
+        <HomeSwiper type="home"/>
+        <HomeSwiper type="kitchen"/>
         <Game />
-        <Beauty />
-        <Baby />
-        <Repurchase />
+        <HomeSwiper type="beauty"/>
+        <HomeSwiper type="baby"/>
+        <HomeSwiper type="repurchase"/>
         <History />
         <SignInBtn />
       </Grid>

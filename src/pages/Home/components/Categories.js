@@ -32,9 +32,9 @@ export default function Categories() {
                 {typeof image === 'string' ? (
                   <img src={image} className="img" />
                 ) : (
-                  <Grid container>
+                  <Grid container spacing={1}>
                     {image.map((img, i) => 
-                      <Grid item key={i}>
+                      <Grid item xs={6} key={i}>
                         <img src={img} className="img" />
                       </Grid>
                     )}

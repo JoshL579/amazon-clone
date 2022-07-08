@@ -13,6 +13,7 @@ const styles = {
   history: {
     padding: 2,
     border: "1px solid lightgrey",
+    width: "100%"
   },
 };
 
