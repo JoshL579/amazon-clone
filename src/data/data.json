@@ -3,13 +3,23 @@
     "id": 1,
     "title": " Gaming accessories",
     "note": "See more",
-    "image": "https://via.placeholder.com/300x350.png"
+    "image": [
+      "https://via.placeholder.com/150x175.png",
+      "https://via.placeholder.com/150x175.png",
+      "https://via.placeholder.com/150x175.png",
+      "https://via.placeholder.com/150x175.png"
+    ]
   },
   {
     "id": 2,
     "title": " Shop by Category",
     "note": "Shop now",
-    "image": "https://via.placeholder.com/300x350.png"
+    "image": [
+      "https://via.placeholder.com/150x175.png",
+      "https://via.placeholder.com/150x175.png",
+      "https://via.placeholder.com/150x175.png",
+      "https://via.placeholder.com/150x175.png"
+    ]
   },
   {
     "id": 3,

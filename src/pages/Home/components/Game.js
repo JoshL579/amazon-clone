@@ -21,7 +21,19 @@ export default function Game() {
                 {title}
               </Typography>
               <Link to="/">
-                <img src={image} className="img" />
+                {typeof image === "string" ? (
+                  <img src={image} className="img" />
+                ) : (
+                  <Grid container spacing={1}>
+                    {image.map((img, i) => {
+                      return (
+                        <Grid item key={i} sx={6}>
+                          <img src={img}></img>
+                        </Grid>
+                      );
+                    })}
+                  </Grid>
+                )}
               </Link>
               <Typography>
                 <Link to="/" style={{ textDecoration: "none" }}>

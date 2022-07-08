@@ -21,6 +21,11 @@
     "id": 4,
     "title": "Shop Pet supplies",
     "note": "See more",
-    "image": "https://via.placeholder.com/300x350.png"
+    "image": [
+      "https://via.placeholder.com/150x175.png",
+      "https://via.placeholder.com/150x175.png",
+      "https://via.placeholder.com/150x175.png",
+      "https://via.placeholder.com/150x175.png"
+    ]
   }
 ]
