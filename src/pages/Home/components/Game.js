@@ -1,7 +1,7 @@
 import { Grid, Paper, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-import game from "../../../data/game.json";
+import games from "../../../data/game.json";
 
 const styles = {
   p: {
@@ -12,10 +12,10 @@ const styles = {
 export default function Game() {
   return (
     <Grid container spacing={3} sx={styles.p}>
-      {game.map((category) => {
-        const { image, note, title } = category;
+      {games.map((game, i) => {
+        const { image, note, title } = game;
         return (
-          <Grid item xs={3}>
+          <Grid item xs={3} key={`game-${i}`}>
             <Paper elevation={2}>
               <Typography variant="h6" fontWeight={700}>
                 {title}
@@ -27,7 +27,7 @@ export default function Game() {
                   <Grid container spacing={1}>
                     {image.map((img, i) => {
                       return (
-                        <Grid item key={i} sx={6}>
+                        <Grid item key={`game-inner-img-${i}`} xs={6}>
                           <img src={img}></img>
                         </Grid>
                       );

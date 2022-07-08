@@ -33,11 +33,11 @@ export default function History() {
         navigation={true}
         style={{ height: 400 }}
       >
-        {histories.map((history) => {
+        {histories.map((history, i) => {
           const { image, price, numberOfReviews, rating, name, shipping } =
             history;
           return (
-            <SwiperSlide>
+            <SwiperSlide key={`history-${i}`}>
               <img src={image}></img>
               <Typography>{name}</Typography>
               <Box sx={{ display: "flex", alignItems: "center" }}>

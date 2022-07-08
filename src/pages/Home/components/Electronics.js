@@ -12,10 +12,10 @@ const styles = {
 export default function Electronics() {
   return (
     <Grid container spacing={3} sx={styles.p}>
-      {electronics.map((category) => {
-        const { image, note, title } = category;
+      {electronics.map((electronic, i) => {
+        const { image, note, title } = electronic;
         return (
-          <Grid item xs={3}>
+          <Grid item xs={3} key={`electronic-${i}`}>
             <Paper elevation={2}>
               <Typography variant="h6" fontWeight={700}>
                 {title}

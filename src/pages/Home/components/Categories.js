@@ -20,10 +20,10 @@ const styles = {
 export default function Categories() {
   return (
     <Grid container sx={styles.container}>
-      {categories.map((category) => {
+      {categories.map((category, i) => {
         const { image, note, title } = category
         return (
-          <Grid item xs={3} sx={styles.cardContainer}>
+          <Grid item xs={3} sx={styles.cardContainer} key={`catagory-${i}`}>
             <Grid item sx={styles.card}>
               <Typography variant="h6" fontWeight={700}>
                 {title}
@@ -34,7 +34,7 @@ export default function Categories() {
                 ) : (
                   <Grid container spacing={1}>
                     {image.map((img, i) => 
-                      <Grid item xs={6} key={i}>
+                      <Grid item xs={6} key={`catagory-img-${i}`}>
                         <img src={img} className="img" />
                       </Grid>
                     )}
