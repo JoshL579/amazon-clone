@@ -11,6 +11,7 @@ import Registry from "./pages/Registry";
 import GiftCard from "./pages/GiftCard";
 import Sell from "./pages/Sell";
 import Business from "./pages/SignIn/Business";
+import './App.css'
 
 function App() {
   return (
