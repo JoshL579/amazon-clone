@@ -29,7 +29,17 @@ export default function Categories() {
                 {title}
               </Typography>
               <Link to="/">
-                <img src={image} className="img" />
+                {typeof image === 'string' ? (
+                  <img src={image} className="img" />
+                ) : (
+                  <Grid container>
+                    {image.map((img, i) => 
+                      <Grid item key={i}>
+                        <img src={img} className="img" />
+                      </Grid>
+                    )}
+                  </Grid>
+                )}
               </Link>
               <Typography>
                 <Link to="/" style={{ textDecoration: 'none' }}>
