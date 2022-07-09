@@ -43,6 +43,7 @@ export const HeaderButtonWrapper = (props) => {
 }
 
 export const HeaderPopover = (props) => {
+  console.log(props)
   const { width } = props
   return (
     <Tooltip
