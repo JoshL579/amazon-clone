@@ -26,8 +26,8 @@ export const HeaderButton = (props) => {
     <Button
       variant="contained"
       disableElevation
-      sx={{ ...styles.root, ...props.sx }}
       {...props}
+      sx={{ ...styles.root, ...props.sx }}
     >
       {props.children}
     </Button>
@@ -36,7 +36,7 @@ export const HeaderButton = (props) => {
 
 export const HeaderButtonWrapper = (props) => {
   return (
-    <Box {...props} sx={styles.root} >
+    <Box {...props} sx={{ ...styles.root, ...props.sx }}>
       {props.children}
     </Box>
   )

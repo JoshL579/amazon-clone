@@ -35,7 +35,7 @@ export default function Header() {
         <Toolbar>
           <Grid container direction="row">
             <HeaderButtonWrapper
-              sx={{ marginRight: 1, padding: '1px 8px 0 0' }}
+              sx={{ marginRight: 1, padding: '1px 8px 0 4px' }}
             >
               <Link href="/">
                 <Box sx={styles.logo} />
