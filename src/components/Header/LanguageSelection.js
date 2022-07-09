@@ -1,110 +1,109 @@
-import React from "react";
+import React from 'react'
 import {
   Typography,
   Box,
+  Grid,
   FormControlLabel,
-  Checkbox,
   Divider,
-} from "@mui/material";
-import { HeaderPopover } from "../../modules/HeaderButton";
-import flag from "../../assets/img/Header/us_flag.png";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
-import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
-import { height } from "@mui/system";
-import { Link } from "react-router-dom";
+  FormControl,
+  RadioGroup,
+  Radio,
+} from '@mui/material'
+import { HeaderPopover } from '../../modules/HeaderButton'
+import flag from '../../assets/img/Header/us_flag.png'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import { Link } from 'react-router-dom'
+import { theme } from '../../theme/theme'
 
 const styles = {
   content: {
     p: 2,
-    color: "#000",
+    color: '#000',
   },
-  flex: {
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  img: {
-    width: 26,
-  },
-  font: {
-    large: {
-      fontSize: 15,
+  radio: {
+    ...theme.typography.body3,
+    height: '28px',
+    '& span': {
+      fontSize: 'inherit',
     },
-    small: {
-      fontSize: 12,
+    '& .MuiFormControlLabel-label:hover': {
+      color: theme.palette.secondary.main,
+      textDecoration: 'underline',
     },
   },
-  margin: {
-    mb: 1,
+  divider: {
+    margin: '8px 0',
   },
-};
+  arrow: {
+    fontSize: '18px',
+    color: '#aaa',
+  },
+}
 
 const LanguageSelectionMenu = () => {
   return (
     <Box sx={styles.content}>
-      <Box sx={styles.flex}>
-        <Typography sx={styles.font.large}>Change language</Typography>
-        <Typography sx={styles.font.small}>
-          <Link to="/">Learn more</Link>
-        </Typography>
-      </Box>
-      <Box sx={styles.margin}>
-        <FormControlLabel
-          label={<Typography fontSize={14}>English-EN</Typography>}
-          control={
-            <Checkbox
-              icon={<CircleOutlinedIcon />}
-              checkedIcon={<CheckCircleOutlineOutlinedIcon />}
-              size="small"
-            />
-          }
-        />
-      </Box>
-      <Divider orientation="horizontal" />
-      <Box sx={styles.margin}>
-        {languages.map((lan) => {
-          return (
-            <Box>
-              <FormControlLabel
-                label={<Typography fontSize={14}>{lan.option}</Typography>}
-                control={
-                  <Checkbox
-                    icon={<CircleOutlinedIcon />}
-                    checkedIcon={<CheckCircleOutlineOutlinedIcon />}
-                    size="small"
-                  />
-                }
-              />
-            </Box>
-          );
-        })}
-      </Box>
-      <Divider orientation="horizontal" />
-      <Box sx={styles.flex}>
-        <Typography sx={styles.font}>Change currency</Typography>
-        <Typography sx={styles.font.small}>
-          <Link to="/">Learn more</Link>
-        </Typography>
-      </Box>
-      <Box sx={[styles.flex, styles.margin]}>
-        <Typography sx={styles.font}>$ - USD - US Dollar</Typography>
-        <Typography sx={styles.font.large}>Change</Typography>
-      </Box>
-      <Divider orientation="horizontal" />
-      <Box>
-        <Box sx={[styles.flex, styles.margin]}>
-          <img src={flag} style={{ width: 30, height: 25 }}></img>
-          <Typography sx={styles.font}>
-            You are shopping on Amazon.com
+      <Grid container alignItems="center" mb={1}>
+        <Grid item xs>
+          <Typography variant="body3">Change language</Typography>
+        </Grid>
+        <Grid item xs>
+          <Typography variant="body4" ml={1}>
+            <Link to="/">Learn more</Link>
           </Typography>
-        </Box>
-        <Typography sx={styles.font} textAlign="center">
-          <Link to="/">Change country/region.</Link>
+        </Grid>
+      </Grid>
+      <FormControl sx={{ width: '100%' }}>
+        <RadioGroup defaultValue={languages[0].value}>
+          {languages.map((language) => (
+            <>
+              <FormControlLabel
+                key={language.value}
+                value={language.value}
+                control={<Radio color="secondary" size="small" />}
+                label={language.label}
+                sx={styles.radio}
+              ></FormControlLabel>
+              {language.selected && <Divider sx={styles.divider} />}
+            </>
+          ))}
+        </RadioGroup>
+      </FormControl>
+      <Divider sx={styles.divider} />
+      <Grid container alignItems="center">
+        <Typography variant="body3">Change currency</Typography>
+        <Typography variant="body4" ml={1}>
+          <Link to="/">Learn more</Link>
         </Typography>
-      </Box>
+      </Grid>
+      <Grid container justifyContent="space-between">
+        <Typography variant="body3">$ - USD - US Dollar</Typography>
+        <Typography variant="body3">
+          <Link to="/">Change</Link>
+        </Typography>
+      </Grid>
+      <Divider sx={styles.divider} />
+      <Grid container justifyContent="center">
+        <Grid item>
+          <Typography variant="body3">
+            <img
+              src={flag}
+              width={17}
+              style={{ verticalAlign: 'text-bottom' }}
+            />
+            You are shopping on
+          </Typography>
+          <Typography variant="body3">Amazon.com</Typography>
+        </Grid>
+        <Grid item mt={2}>
+          <Typography variant="body3">
+            <Link to="/">Change country/region.</Link>
+          </Typography>
+        </Grid>
+      </Grid>
     </Box>
-  );
-};
+  )
+}
 
 export const LanguageSelection = () => {
   return (
@@ -112,40 +111,54 @@ export const LanguageSelection = () => {
       <HeaderPopover
         placement="bottom-start"
         popover={<LanguageSelectionMenu />}
-        width={270}
+        width={240}
+        sx={{ padding: '6px' }}
       >
-        <Box sx={(styles.flex, { paddingTop: 1.5 })}>
-          <img src={flag} style={styles.img}></img>
-          <ArrowDropDownIcon />
+        <Box sx={{ paddingTop: 1.5 }}>
+          <img src={flag} width={26}></img>
+          <ArrowDropDownIcon sx={styles.arrow} />
         </Box>
       </HeaderPopover>
     </>
-  );
-};
+  )
+}
 
 const languages = [
   {
-    option: "español - ES",
+    label: 'English - EN',
+    value: 'en',
+    selected: true,
   },
   {
-    option: "العربية - AR",
+    label: 'español - ES',
+    value: 'es',
   },
   {
-    option: "Deutsch - DE",
+    label: 'العربية - AR',
+    value: 'ar',
   },
   {
-    option: "עברית - HE",
+    label: 'Deutsch - DE',
+    value: 'de',
   },
   {
-    option: "한국어 - KO",
+    label: 'עברית - HE',
+    value: 'he',
   },
   {
-    option: "português - PT",
+    label: '한국어 - KO',
+    value: 'ko',
   },
   {
-    option: "中文 (简体) - ZH",
+    label: 'português - PT',
+    value: 'pt',
   },
   {
-    option: "中文 (繁體) - ZH",
+    label: '中文 (简体) - ZH',
+    value: 'zh-cn',
   },
-];
+  {
+    label: '中文 (繁體) - ZH',
+    value: 'zh-tw',
+  },
+]

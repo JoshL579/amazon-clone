@@ -15,7 +15,11 @@ export const theme = createTheme({
       contrastText: '#000'
     },
     blue: {
-      main: "#0066c0"
+      main: "#0066c0",
+      light: '#007aff'
+    },
+    orange: {
+      main: '#C7511F'
     }
   },
   typography: {
@@ -35,6 +39,14 @@ export const theme = createTheme({
     },
     body2: {
       fontSize: 14,
+      fontWeight: 500
+    },
+    body3: {
+      fontSize: 13,
+      fontWeight: 500
+    },
+    body4: {
+      fontSize: 12,
       fontWeight: 500
     },
 
