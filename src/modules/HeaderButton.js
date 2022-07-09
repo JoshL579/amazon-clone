@@ -26,8 +26,8 @@ export const HeaderButton = (props) => {
     <Button
       variant="contained"
       disableElevation
-      sx={{ ...styles.root, ...props.sx }}
       {...props}
+      sx={{ ...styles.root, ...props.sx }}
     >
       {props.children}
     </Button>
@@ -36,7 +36,7 @@ export const HeaderButton = (props) => {
 
 export const HeaderButtonWrapper = (props) => {
   return (
-    <Box {...props} sx={styles.root} >
+    <Box {...props} sx={{ ...styles.root, ...props.sx }}>
       {props.children}
     </Box>
   )
@@ -62,7 +62,12 @@ export const HeaderPopover = (props) => {
       enterDelay={500}
       {...props}
     >
-      <Button variant="contained" sx={styles.root} {...props} popover={null}>
+      <Button
+        variant="contained"
+        sx={{ ...styles.root, ...props.sx }}
+        {...props.rest}
+        popover={null}
+      >
         {props.children}
       </Button>
     </Tooltip>

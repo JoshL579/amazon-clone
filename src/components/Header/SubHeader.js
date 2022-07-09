@@ -9,7 +9,7 @@ import { theme } from '../../theme/theme'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Sidebar from './Sidebar'
-import { HeaderButton } from '../../modules/HeaderButton'
+import { HeaderButton, HeaderButtonWrapper } from '../../modules/HeaderButton'
 
 export const SubHeader = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -17,6 +17,7 @@ export const SubHeader = () => {
   const styles = {
     headerBtn: {
       padding: '2px 8px',
+      height: 'unset',
       backgroundColor: 'transparent',
       border: '1px solid transparent',
       borderRadius: '2px',
@@ -27,7 +28,11 @@ export const SubHeader = () => {
     },
     toggle: {
       marginRight: '6px',
-      padding: 0,
+      padding: '0 0 0 6px',
+      display: 'inline-flex',
+      justifyContent: 'center',
+      height: 'unset',
+      width: '50px',
       backgroundColor: 'transparent',
       border: '1px solid transparent',
       borderRadius: '2px',
@@ -61,8 +66,8 @@ export const SubHeader = () => {
       position="static"
       sx={{ backgroundColor: theme.palette.primary.light, maxHeight: '39px' }}
     >
-      <Toolbar style={{ maxHeight: 'inherit', minHeight: '39px' }}>
-        <HeaderButton sx={styles.toggle}>
+      <Toolbar style={{ maxHeight: 'inherit', minHeight: '39px'}}>
+        <HeaderButtonWrapper sx={styles.toggle}>
           <IconButton
             size="large"
             edge="start"
@@ -73,7 +78,7 @@ export const SubHeader = () => {
             <MenuIcon />
             <Typography variant="h6">All</Typography>
           </IconButton>
-        </HeaderButton>
+        </HeaderButtonWrapper>
         <Sidebar
           isDrawerOpen={isDrawerOpen}
           setIsDrawerOpen={setIsDrawerOpen}
