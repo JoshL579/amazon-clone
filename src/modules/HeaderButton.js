@@ -62,7 +62,12 @@ export const HeaderPopover = (props) => {
       enterDelay={500}
       {...props}
     >
-      <Button variant="contained" sx={styles.root} {...props} popover={null}>
+      <Button
+        variant="contained"
+        sx={{ ...styles.root, ...props.sx }}
+        {...props.rest}
+        popover={null}
+      >
         {props.children}
       </Button>
     </Tooltip>
