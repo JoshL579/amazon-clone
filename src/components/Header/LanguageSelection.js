@@ -56,16 +56,15 @@ const LanguageSelectionMenu = () => {
       <FormControl sx={{ width: '100%' }}>
         <RadioGroup defaultValue={languages[0].value}>
           {languages.map((language) => (
-            <>
+            <div key={language.value}>
               <FormControlLabel
-                key={language.value}
                 value={language.value}
                 control={<Radio color="secondary" size="small" />}
                 label={language.label}
                 sx={styles.radio}
               ></FormControlLabel>
               {language.selected && <Divider sx={styles.divider} />}
-            </>
+            </div>
           ))}
         </RadioGroup>
       </FormControl>
