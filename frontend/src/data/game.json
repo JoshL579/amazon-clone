@@ -1,0 +1,31 @@
+[
+  {
+    "id": 1,
+    "title": "Gaming merchandise",
+    "note": "See more",
+    "image": "https://via.placeholder.com/300x350.png"
+  },
+  {
+    "id": 2,
+    "title": "Shop activity trackers and smartwatches",
+    "note": "Shop now",
+    "image": "https://via.placeholder.com/300x320.png"
+  },
+  {
+    "id": 3,
+    "title": "New arrivals in Toys",
+    "note": "Shop now",
+    "image": "https://via.placeholder.com/300x350.png"
+  },
+  {
+    "id": 4,
+    "title": "Shop Pet supplies",
+    "note": "See more",
+    "image": [
+      "https://via.placeholder.com/150x175.png",
+      "https://via.placeholder.com/150x175.png",
+      "https://via.placeholder.com/150x175.png",
+      "https://via.placeholder.com/150x175.png"
+    ]
+  }
+]

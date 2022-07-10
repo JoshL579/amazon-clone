@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "Amazon Ember";
+  src: url("./assets/fonts/AmazonEmberBold/Amazon-Ember.ttf");
+  src: url("./assets/fonts/AmazonEmberBold/Amazon-Ember.ttf") format('truetype')
+}
+
+body {
+  margin: 0;
+  font-family: "Amazon Ember",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+.img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
