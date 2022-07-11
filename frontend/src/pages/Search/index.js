@@ -1,16 +1,12 @@
-import {
-  FormControl,
-  MenuItem,
-  Grid,
-  Paper,
-  Select,
-  Typography,
-  Rating,
-} from "@mui/material";
+import { Grid } from "@mui/material";
 import React from "react";
 import SearchLeftBar from "./components/SearchLeftBar";
 import SearchRightBar from "./components/SearchRightBar";
 import SearchTopBar from "./components/SearchTopBar";
+import History from "../Home/components/History";
+import SignInBtn from "../Home/components/SignInBtn";
+import BtnGroup from "./components/BtnGroup";
+import BackToTop from "./components/BackToTop";
 
 const styles = {
   flex: {
@@ -33,6 +29,10 @@ const Search = () => {
       <Grid container sx={styles.container}>
         <SearchLeftBar />
         <SearchRightBar />
+        <BtnGroup />
+        <History />
+        <SignInBtn />
+        <BackToTop />
       </Grid>
     </>
   );

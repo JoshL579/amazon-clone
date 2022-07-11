@@ -8,13 +8,21 @@ import {
   Checkbox,
   TextField,
   Button,
+  InputAdornment,
 } from "@mui/material";
 
 const SearchLeftBar = () => {
   return (
-    <Grid container item xs={3} display="flex" flexDirection="column" spacing={2}>
+    <Grid
+      container
+      item
+      xs={3}
+      display="flex"
+      flexDirection="column"
+      spacing={2}
+    >
       <Grid item>
-        <Typography variant="h6">Customer Reviews</Typography>
+        <Typography variant="subtitle1">Customer Reviews</Typography>
         <Grid item display="flex" flexDirection="column">
           {ratings.map((rating) => {
             return (
@@ -27,7 +35,7 @@ const SearchLeftBar = () => {
         </Grid>
       </Grid>
       <Grid item>
-        <Typography variant="h6">Brand</Typography>
+        <Typography variant="subtitle1">Brand</Typography>
         <FormGroup>
           {brands.map((brand) => {
             return (
@@ -40,13 +48,33 @@ const SearchLeftBar = () => {
         </FormGroup>
       </Grid>
       <Grid item>
-        <Typography variant="h6">Price</Typography>
+        <Typography variant="subtitle1">Price</Typography>
         {prices.map((price) => {
           return <Typography>{price.price}</Typography>;
         })}
-        <TextField placeholder="MIN" sx={{ width: "4rem" }}></TextField>
-        <TextField placeholder="MAX" sx={{ width: "4rem" }}></TextField>
-        <Button variant="outlined">Go</Button>
+        <Grid item display="flex" alignItems="center">
+          <TextField
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">$</InputAdornment>
+              ),
+            }}
+            placeholder="MIN"
+            sx={{ width: "5rem", "& input": { padding: 0 } }}
+          ></TextField>
+          <TextField
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">$</InputAdornment>
+              ),
+            }}
+            placeholder="MAX"
+            sx={{ width: "5rem", "& input": { padding: 0 } }}
+          ></TextField>
+          <Button variant="outlined" sx={{ padding: 0 }}>
+            Go
+          </Button>
+        </Grid>
       </Grid>
     </Grid>
   );

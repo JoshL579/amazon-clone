@@ -1,23 +1,15 @@
 import React from "react";
-import {
-  FormControl,
-  MenuItem,
-  Grid,
-  Paper,
-  Select,
-  Typography,
-  Rating,
-} from "@mui/material";
+import { Grid, Typography, Rating } from "@mui/material";
 
 const SearchRightBar = () => {
   return (
     <Grid container item xs={9} spacing={1}>
-      <Typography>RESULTS</Typography>
+      <Typography variant="h5">RESULTS</Typography>
       {monitors.map((monitor) => {
         const { name, price, numberOfReviews, img, rating } = monitor;
         console.log(name);
         return (
-          <Grid item display="flex">
+          <Grid item display="flex" gap={2}>
             <img src={img}></img>
             <Grid item>
               <Typography>{name}</Typography>
