@@ -29,7 +29,7 @@ const SearchTopBar = () => {
     <Grid item sx={styles.width}>
       <Paper sx={styles.flex} elevation={2}>
         <Typography>
-          1-16 of 123 results for "iphone external battery
+          1-16 of 123 results for "iphone external battery"
         </Typography>
         <FormControl sx={{ minWidth: 120 }}>
           <Select
