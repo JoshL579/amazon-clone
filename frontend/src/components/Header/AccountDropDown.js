@@ -62,8 +62,8 @@ const AccountDropdownMenu = () => {
           <Typography variant="h6" mb={1}>
             Your Lists
           </Typography>
-          {leftList.map((link) => (
-            <Box sx={styles.link}>
+          {leftList.map((link, i) => (
+            <Box sx={styles.link} key={`account-link-left-${i}`}>
               <Link key={link.id} href={link.href} underline="none">
                 {link.label}
               </Link>
@@ -77,8 +77,8 @@ const AccountDropdownMenu = () => {
           <Typography variant="h6" mb={1}>
             Your Account
           </Typography>
-          {rightList.map((link) => (
-            <Box sx={styles.link}>
+          {rightList.map((link, i) => (
+            <Box sx={styles.link} key={`account-link-right-${i}`}>
               <Link key={link.id} href={link.href} underline="none">
                 {link.label}
               </Link>
