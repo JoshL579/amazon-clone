@@ -24,9 +24,9 @@ const SearchLeftBar = () => {
       <Grid item>
         <Typography variant="subtitle1">Customer Reviews</Typography>
         <Grid item display="flex" flexDirection="column">
-          {ratings.map((rating) => {
+          {ratings.map((rating, index) => {
             return (
-              <Grid item display="flex">
+              <Grid item display="flex" key={index}>
                 <Rating name="read-only" value={rating.value} readOnly />
                 <Typography> & up</Typography>
               </Grid>
@@ -37,11 +37,12 @@ const SearchLeftBar = () => {
       <Grid item>
         <Typography variant="subtitle1">Brand</Typography>
         <FormGroup>
-          {brands.map((brand) => {
+          {brands.map((brand, index) => {
             return (
               <FormControlLabel
                 control={<Checkbox sx={{ paddingBottom: 0, paddingTop: 0 }} />}
                 label={brand.brand}
+                key={index}
               />
             );
           })}
@@ -49,8 +50,8 @@ const SearchLeftBar = () => {
       </Grid>
       <Grid item>
         <Typography variant="subtitle1">Price</Typography>
-        {prices.map((price) => {
-          return <Typography>{price.price}</Typography>;
+        {prices.map((price, index) => {
+          return <Typography key={index}>{price.price}</Typography>;
         })}
         <Grid item display="flex" alignItems="center">
           <TextField

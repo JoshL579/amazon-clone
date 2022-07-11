@@ -5,12 +5,11 @@ const SearchRightBar = () => {
   return (
     <Grid container item xs={9} spacing={1}>
       <Typography variant="h5">RESULTS</Typography>
-      {monitors.map((monitor) => {
+      {monitors.map((monitor, index) => {
         const { name, price, numberOfReviews, img, rating } = monitor;
-        console.log(name);
         return (
-          <Grid item display="flex" gap={2}>
-            <img src={img}></img>
+          <Grid item display="flex" gap={2} key={index}>
+            <img src={img} alt="good"></img>
             <Grid item>
               <Typography>{name}</Typography>
               <Grid display="flex" alignItems="center">
