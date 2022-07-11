@@ -38,4 +38,4 @@ const userDbHandler = {
   findUserByEmail: findUserByEmail,
 }
 
-module.exports = { userDbHandler }
+module.exports = userDbHandler
