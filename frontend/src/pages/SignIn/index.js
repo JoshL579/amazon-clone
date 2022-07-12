@@ -42,6 +42,7 @@ const SignIn = (props) => {
   const [passwordSignUp, setPasswordSignUp] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [name, setName] = useState("");
+
   let navigate = useNavigate();
 
   const handleSubmitSignin = () => {
@@ -63,17 +64,24 @@ const SignIn = (props) => {
   };
 
   const handleSubmitSignup = () => {
-    console.log(password)
-    console.log(passwordConfirm)
-    if(passwordSignUp !== passwordConfirm) {
-      alert('wrong password')
-      return 
+    if (passwordSignUp !== passwordConfirm) {
+      alert("wrong password");
+      return;
     }
-    signup({ email: emailSignUp, password: passwordSignUp, name: name }).then(
-      (res) => {
-        console.log(res);
-      }
-    );
+
+    signup({ email: emailSignUp, password: passwordSignUp, name: name })
+      .then((res) => {
+        if (res.success) {
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        alert(JSON.stringify(err));
+      });
+  };
+
+  const validate = () => {
+    let temp = {};
   };
 
   return (
@@ -176,6 +184,7 @@ const SignIn = (props) => {
             onChange={(e) => {
               setName(e.target.value);
             }}
+            autoFocus
           ></TextField>
           <Typography variant="h7" sx={{ fontWeight: 700 }}>
             Mobile number or email
@@ -228,9 +237,9 @@ const SignIn = (props) => {
             size="small"
             color="warning"
             value={passwordConfirm}
-                onChange={(e) => {
-                  setPasswordConfirm(e.target.value);
-                }}
+            onChange={(e) => {
+              setPasswordConfirm(e.target.value);
+            }}
           ></TextField>
 
           <Button
