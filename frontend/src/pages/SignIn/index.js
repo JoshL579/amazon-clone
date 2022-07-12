@@ -42,19 +42,27 @@ const SignIn = (props) => {
   const [passwordSignUp, setPasswordSignUp] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [name, setName] = useState("");
+  const [error, setError] = useState(false);
 
   let navigate = useNavigate();
 
   const handleSubmitSignin = () => {
-    if (step === 1) {
+    if (step === 1 && email) {
       setStep(2);
       return;
     }
+
+    if (!email || !password) {
+      setError(true);
+      return;
+    }
+
     login({ email: email, password: password })
       .then((res) => {
         if (res.success) {
           navigate("/");
         }
+        alert("something wrong");
 
         // redirect
       })
@@ -69,6 +77,11 @@ const SignIn = (props) => {
       return;
     }
 
+    if (!name || !emailSignUp || !passwordSignUp) {
+      setError(true);
+      return;
+    }
+
     signup({ email: emailSignUp, password: passwordSignUp, name: name })
       .then((res) => {
         if (res.success) {
@@ -78,10 +91,6 @@ const SignIn = (props) => {
       .catch((err) => {
         alert(JSON.stringify(err));
       });
-  };
-
-  const validate = () => {
-    let temp = {};
   };
 
   return (
@@ -112,6 +121,11 @@ const SignIn = (props) => {
                   setEmail(e.target.value);
                 }}
                 sx={{ marginBottom: 1 }}
+                autoFocus
+                error
+                helperText={
+                  error ? "!  Enter your email or mobile phone number" : ""
+                }
               ></TextField>
             ) : (
               <TextField
@@ -126,6 +140,9 @@ const SignIn = (props) => {
                   setPassword(e.target.value);
                 }}
                 sx={{ marginBottom: 1 }}
+                autoFocus
+                error
+                helperText={error ? "!  Enter your password" : ""}
               ></TextField>
             )}
             <Button
@@ -185,6 +202,8 @@ const SignIn = (props) => {
               setName(e.target.value);
             }}
             autoFocus
+            error
+            helperText={error ? "!  enter your name" : ""}
           ></TextField>
           <Typography variant="h7" sx={{ fontWeight: 700 }}>
             Mobile number or email
@@ -199,6 +218,10 @@ const SignIn = (props) => {
             onChange={(e) => {
               setEmailSignUp(e.target.value);
             }}
+            error
+            helperText={
+              error ? "!  Enter your email or mobile phone number" : ""
+            }
           ></TextField>
           <Typography variant="h7" sx={{ fontWeight: 700 }}>
             Password
@@ -214,6 +237,8 @@ const SignIn = (props) => {
             onChange={(e) => {
               setPasswordSignUp(e.target.value);
             }}
+            error
+            helperText={error ? "!  Minimum 6 characters required" : ""}
           ></TextField>
           <Box
             sx={{
@@ -222,10 +247,10 @@ const SignIn = (props) => {
               marginBottom: 2,
             }}
           >
-            <PriorityHighIcon color="blue" fontSize="10px" />
+            {/* <PriorityHighIcon color="blue" fontSize="10px" />
             <Typography variant="body2">
               Passwords must be at least 6 characters.
-            </Typography>
+            </Typography> */}
           </Box>
           <Typography variant="h7" sx={{ fontWeight: 700 }}>
             Re-enter password
