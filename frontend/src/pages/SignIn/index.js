@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login, signup } from "../../api/endpoints/auth";
 
 const paperStyle = {
@@ -32,10 +32,17 @@ const paperStyle = {
 
 const SignIn = (props) => {
   const { page } = props;
+  // signin state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [step, setStep] = useState(1);
-  const [success, setSuccess] = useState(false);
+
+  // signup state
+  const [emailSignUp, setEmailSignUp] = useState("");
+  const [passwordSignUp, setPasswordSignUp] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [name, setName] = useState("");
+  let navigate = useNavigate();
 
   const handleSubmitSignin = () => {
     if (step === 1) {
@@ -44,9 +51,10 @@ const SignIn = (props) => {
     }
     login({ email: email, password: password })
       .then((res) => {
-        {
-          res.success === true && setSuccess(true);
+        if (res.success) {
+          navigate("/");
         }
+
         // redirect
       })
       .catch((err) => {
@@ -55,9 +63,17 @@ const SignIn = (props) => {
   };
 
   const handleSubmitSignup = () => {
-    signup({ email: email, password: password }).then((res) => {
-      console.log(res);
-    });
+    console.log(password)
+    console.log(passwordConfirm)
+    if(passwordSignUp !== passwordConfirm) {
+      alert('wrong password')
+      return 
+    }
+    signup({ email: emailSignUp, password: passwordSignUp, name: name }).then(
+      (res) => {
+        console.log(res);
+      }
+    );
   };
 
   return (
@@ -140,7 +156,6 @@ const SignIn = (props) => {
               </Button>
             </Link>
           </Box>
-          {success && <Navigate replace to="/" />}
         </Grid>
       ) : (
         <Paper elevation={3} style={paperStyle.signup}>
@@ -157,6 +172,10 @@ const SignIn = (props) => {
             placeholder="First and last name"
             size="small"
             color="warning"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
           ></TextField>
           <Typography variant="h7" sx={{ fontWeight: 700 }}>
             Mobile number or email
@@ -167,6 +186,10 @@ const SignIn = (props) => {
             sx={{ marginBottom: 2 }}
             size="small"
             color="warning"
+            value={emailSignUp}
+            onChange={(e) => {
+              setEmailSignUp(e.target.value);
+            }}
           ></TextField>
           <Typography variant="h7" sx={{ fontWeight: 700 }}>
             Password
@@ -178,6 +201,10 @@ const SignIn = (props) => {
             size="small"
             placeholder="At least 6 characters"
             color="warning"
+            value={passwordSignUp}
+            onChange={(e) => {
+              setPasswordSignUp(e.target.value);
+            }}
           ></TextField>
           <Box
             sx={{
@@ -200,6 +227,10 @@ const SignIn = (props) => {
             sx={{ marginBottom: 2 }}
             size="small"
             color="warning"
+            value={passwordConfirm}
+                onChange={(e) => {
+                  setPasswordConfirm(e.target.value);
+                }}
           ></TextField>
 
           <Button
