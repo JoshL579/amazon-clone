@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
-import { Link } from "react-router-dom";
-import { login } from "../../api/endpoints/auth"
+import { Link, useNavigate } from "react-router-dom";
+import { login, signup } from "../../api/endpoints/auth";
 
 const paperStyle = {
   signin: {
@@ -32,13 +32,67 @@ const paperStyle = {
 
 const SignIn = (props) => {
   const { page } = props;
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const handleSubmit = () => {
-    login({email: email, password: password}).then(res => {
-      console.log(res)
-    })
-  }
+  // signin state
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [step, setStep] = useState(1);
+
+  // signup state
+  const [emailSignUp, setEmailSignUp] = useState("");
+  const [passwordSignUp, setPasswordSignUp] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [name, setName] = useState("");
+  const [error, setError] = useState(false);
+
+  let navigate = useNavigate();
+
+  const handleSubmitSignin = () => {
+    if (step === 1 && email) {
+      setStep(2);
+      return;
+    }
+
+    if (!email || !password) {
+      setError(true);
+      return;
+    }
+
+    login({ email: email, password: password })
+      .then((res) => {
+        if (res.success) {
+          navigate("/");
+        }
+        alert("something wrong");
+
+        // redirect
+      })
+      .catch((err) => {
+        alert(JSON.stringify(err));
+      });
+  };
+
+  const handleSubmitSignup = () => {
+    if (passwordSignUp !== passwordConfirm) {
+      alert("wrong password");
+      return;
+    }
+
+    if (!name || !emailSignUp || !passwordSignUp) {
+      setError(true);
+      return;
+    }
+
+    signup({ email: emailSignUp, password: passwordSignUp, name: name })
+      .then((res) => {
+        if (res.success) {
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        alert(JSON.stringify(err));
+      });
+  };
+
   return (
     <Grid>
       <Box
@@ -55,34 +109,49 @@ const SignIn = (props) => {
             <Typography variant="h7" sx={{ fontWeight: 700 }}>
               Email of mobile phone number
             </Typography>
-            <TextField
-              size="small"
-              color="warning"
-              fullWidth
-              required
-              placeholder="email"
-              value={email}
-              onChange={(e) => { setEmail(e.target.value) }}
-              sx={{ marginBottom: 1 }}
-            ></TextField>
-            <TextField
-              size="small"
-              color="warning"
-              fullWidth
-              required
-              placeholder="password"
-              type="password"
-              value={password}
-              onChange={(e) => { setPassword(e.target.value) }}
-              sx={{ marginBottom: 1 }}
-            ></TextField>
+            {step === 1 ? (
+              <TextField
+                size="small"
+                color="warning"
+                fullWidth
+                required
+                placeholder="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                sx={{ marginBottom: 1 }}
+                autoFocus
+                error
+                helperText={
+                  error ? "!  Enter your email or mobile phone number" : ""
+                }
+              ></TextField>
+            ) : (
+              <TextField
+                size="small"
+                color="warning"
+                fullWidth
+                required
+                placeholder="password"
+                type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                sx={{ marginBottom: 1 }}
+                autoFocus
+                error
+                helperText={error ? "!  Enter your password" : ""}
+              ></TextField>
+            )}
             <Button
               sx={{ marginBottom: 3, fontSize: 11 }}
               type="submit"
               variant="contained"
               color="secondary"
               fullWidth
-              onClick={handleSubmit}
+              onClick={handleSubmitSignin}
             >
               Continue
             </Button>
@@ -128,6 +197,13 @@ const SignIn = (props) => {
             placeholder="First and last name"
             size="small"
             color="warning"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+            autoFocus
+            error
+            helperText={error ? "!  enter your name" : ""}
           ></TextField>
           <Typography variant="h7" sx={{ fontWeight: 700 }}>
             Mobile number or email
@@ -138,6 +214,14 @@ const SignIn = (props) => {
             sx={{ marginBottom: 2 }}
             size="small"
             color="warning"
+            value={emailSignUp}
+            onChange={(e) => {
+              setEmailSignUp(e.target.value);
+            }}
+            error
+            helperText={
+              error ? "!  Enter your email or mobile phone number" : ""
+            }
           ></TextField>
           <Typography variant="h7" sx={{ fontWeight: 700 }}>
             Password
@@ -149,6 +233,12 @@ const SignIn = (props) => {
             size="small"
             placeholder="At least 6 characters"
             color="warning"
+            value={passwordSignUp}
+            onChange={(e) => {
+              setPasswordSignUp(e.target.value);
+            }}
+            error
+            helperText={error ? "!  Minimum 6 characters required" : ""}
           ></TextField>
           <Box
             sx={{
@@ -157,10 +247,10 @@ const SignIn = (props) => {
               marginBottom: 2,
             }}
           >
-            <PriorityHighIcon color="blue" fontSize="10px" />
+            {/* <PriorityHighIcon color="blue" fontSize="10px" />
             <Typography variant="body2">
               Passwords must be at least 6 characters.
-            </Typography>
+            </Typography> */}
           </Box>
           <Typography variant="h7" sx={{ fontWeight: 700 }}>
             Re-enter password
@@ -171,6 +261,10 @@ const SignIn = (props) => {
             sx={{ marginBottom: 2 }}
             size="small"
             color="warning"
+            value={passwordConfirm}
+            onChange={(e) => {
+              setPasswordConfirm(e.target.value);
+            }}
           ></TextField>
 
           <Button
@@ -179,6 +273,7 @@ const SignIn = (props) => {
             variant="contained"
             color="secondary"
             fullWidth
+            onClick={handleSubmitSignup}
           >
             Continue
           </Button>
@@ -195,8 +290,7 @@ const SignIn = (props) => {
             <Link to="/business">Create a free business account</Link>
           </Typography>
         </Paper>
-      )
-      }
+      )}
 
       <BottomNavigation showLabels>
         <BottomNavigationAction label=" Conditions of Use " />
@@ -206,7 +300,7 @@ const SignIn = (props) => {
       <Typography align="center" fontSize={12}>
         © 1996-2022, Amazon.com, Inc. or its affiliates
       </Typography>
-    </Grid >
+    </Grid>
   );
 };
 

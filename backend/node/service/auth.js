@@ -37,7 +37,7 @@ const checkToken = () => {}
 
 const authService = {
   login: login,
-  signupUser: signup,
+  signup: signup,
   resetPassword: resetPassword,
   checkToken: checkToken,
 }
