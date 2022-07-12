@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
-import { Link } from "react-router-dom";
-import { login } from "../../api/endpoints/auth"
+import { Link, Navigate } from "react-router-dom";
+import { login, signup } from "../../api/endpoints/auth";
 
 const paperStyle = {
   signin: {
@@ -32,13 +32,34 @@ const paperStyle = {
 
 const SignIn = (props) => {
   const { page } = props;
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const handleSubmit = () => {
-    login({email: email, password: password}).then(res => {
-      console.log(res)
-    })
-  }
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [step, setStep] = useState(1);
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmitSignin = () => {
+    if (step === 1) {
+      setStep(2);
+      return;
+    }
+    login({ email: email, password: password })
+      .then((res) => {
+        {
+          res.success === true && setSuccess(true);
+        }
+        // redirect
+      })
+      .catch((err) => {
+        alert(JSON.stringify(err));
+      });
+  };
+
+  const handleSubmitSignup = () => {
+    signup({ email: email, password: password }).then((res) => {
+      console.log(res);
+    });
+  };
+
   return (
     <Grid>
       <Box
@@ -55,34 +76,41 @@ const SignIn = (props) => {
             <Typography variant="h7" sx={{ fontWeight: 700 }}>
               Email of mobile phone number
             </Typography>
-            <TextField
-              size="small"
-              color="warning"
-              fullWidth
-              required
-              placeholder="email"
-              value={email}
-              onChange={(e) => { setEmail(e.target.value) }}
-              sx={{ marginBottom: 1 }}
-            ></TextField>
-            <TextField
-              size="small"
-              color="warning"
-              fullWidth
-              required
-              placeholder="password"
-              type="password"
-              value={password}
-              onChange={(e) => { setPassword(e.target.value) }}
-              sx={{ marginBottom: 1 }}
-            ></TextField>
+            {step === 1 ? (
+              <TextField
+                size="small"
+                color="warning"
+                fullWidth
+                required
+                placeholder="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                sx={{ marginBottom: 1 }}
+              ></TextField>
+            ) : (
+              <TextField
+                size="small"
+                color="warning"
+                fullWidth
+                required
+                placeholder="password"
+                type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                sx={{ marginBottom: 1 }}
+              ></TextField>
+            )}
             <Button
               sx={{ marginBottom: 3, fontSize: 11 }}
               type="submit"
               variant="contained"
               color="secondary"
               fullWidth
-              onClick={handleSubmit}
+              onClick={handleSubmitSignin}
             >
               Continue
             </Button>
@@ -112,6 +140,7 @@ const SignIn = (props) => {
               </Button>
             </Link>
           </Box>
+          {success && <Navigate replace to="/" />}
         </Grid>
       ) : (
         <Paper elevation={3} style={paperStyle.signup}>
@@ -179,6 +208,7 @@ const SignIn = (props) => {
             variant="contained"
             color="secondary"
             fullWidth
+            onClick={handleSubmitSignup}
           >
             Continue
           </Button>
@@ -195,8 +225,7 @@ const SignIn = (props) => {
             <Link to="/business">Create a free business account</Link>
           </Typography>
         </Paper>
-      )
-      }
+      )}
 
       <BottomNavigation showLabels>
         <BottomNavigationAction label=" Conditions of Use " />
@@ -206,7 +235,7 @@ const SignIn = (props) => {
       <Typography align="center" fontSize={12}>
         © 1996-2022, Amazon.com, Inc. or its affiliates
       </Typography>
-    </Grid >
+    </Grid>
   );
 };
 
