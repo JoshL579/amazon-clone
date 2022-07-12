@@ -1,12 +1,12 @@
 import Axios from 'axios'
 
-const baseUrl = ''
+const baseUrl = 'http://localhost:3001'
 
-const axios = Axios.create({
-    baseUrl: baseUrl
+const reqeusts = Axios.create({
+    baseURL: baseUrl
 })
 
-axios.interceptors.request.use(
+reqeusts.interceptors.request.use(
     (config) => {
         return config
     },
@@ -15,7 +15,7 @@ axios.interceptors.request.use(
     }
 )
 
-axios.interceptors.response.use(
+reqeusts.interceptors.response.use(
     (res) => {
         if (res.status === 200) {
             return res.data
@@ -31,4 +31,4 @@ axios.interceptors.response.use(
     }
 )
 
-export default axios
+export default reqeusts

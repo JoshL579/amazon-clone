@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/img/SignIn/amazon-logo.png";
 import {
   Button,
@@ -13,6 +13,7 @@ import {
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 import { Link } from "react-router-dom";
+import { login } from "../../api/endpoints/auth"
 
 const paperStyle = {
   signin: {
@@ -31,6 +32,13 @@ const paperStyle = {
 
 const SignIn = (props) => {
   const { page } = props;
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const handleSubmit = () => {
+    login({email: email, password: password}).then(res => {
+      console.log(res)
+    })
+  }
   return (
     <Grid>
       <Box
@@ -52,6 +60,20 @@ const SignIn = (props) => {
               color="warning"
               fullWidth
               required
+              placeholder="email"
+              value={email}
+              onChange={(e) => { setEmail(e.target.value) }}
+              sx={{ marginBottom: 1 }}
+            ></TextField>
+            <TextField
+              size="small"
+              color="warning"
+              fullWidth
+              required
+              placeholder="password"
+              type="password"
+              value={password}
+              onChange={(e) => { setPassword(e.target.value) }}
               sx={{ marginBottom: 1 }}
             ></TextField>
             <Button
@@ -60,6 +82,7 @@ const SignIn = (props) => {
               variant="contained"
               color="secondary"
               fullWidth
+              onClick={handleSubmit}
             >
               Continue
             </Button>
@@ -172,7 +195,8 @@ const SignIn = (props) => {
             <Link to="/business">Create a free business account</Link>
           </Typography>
         </Paper>
-      )}
+      )
+      }
 
       <BottomNavigation showLabels>
         <BottomNavigationAction label=" Conditions of Use " />
@@ -182,7 +206,7 @@ const SignIn = (props) => {
       <Typography align="center" fontSize={12}>
         © 1996-2022, Amazon.com, Inc. or its affiliates
       </Typography>
-    </Grid>
+    </Grid >
   );
 };
 
