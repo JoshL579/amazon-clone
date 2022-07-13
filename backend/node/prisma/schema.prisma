@@ -24,17 +24,21 @@ model User {
 }
 
 model Products {
-  id            Int       @id @default(autoincrement())
+  id            Int        @id @default(autoincrement())
   title         String
+  price         Float      @default(10.00)
+  rating        Float      @default(5)
+  briefly       String?    @default("")
   description   String?
   spacification String?
   images        String?
   thumbnail     String?
-  published     Boolean   @default(false)
-  publishedTime DateTime? @default(now())
-  publisher     User?     @relation(fields: [publisherId], references: [id])
+  published     Boolean    @default(false)
+  publishedTime DateTime?  @default(now())
+  publisher     User?      @relation(fields: [publisherId], references: [id])
   publisherId   Int?
   reviews       Reviews[]
+  Category      Category[]
 }
 
 model Reviews {
@@ -47,4 +51,11 @@ model Reviews {
   productId     Int?
   author        User?     @relation(fields: [authorId], references: [id])
   authorId      Int?
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  catagory  String
+  product   Products? @relation(fields: [productId], references: [id])
+  productId Int?
 }
