@@ -11,7 +11,6 @@ import {
   BottomNavigationAction,
 } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 import { Link, useNavigate } from "react-router-dom";
 import { login, signup } from "../../api/endpoints/auth";
 
@@ -36,24 +35,39 @@ const SignIn = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [step, setStep] = useState(1);
+  const [errorNoEmailSignIn, SetErrorNoEmailSignIn] = useState(false);
+  const [errorNoPassSignIn, setErrorNoPassSignIn] = useState(false);
 
   // signup state
   const [emailSignUp, setEmailSignUp] = useState("");
   const [passwordSignUp, setPasswordSignUp] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [name, setName] = useState("");
-  const [error, setError] = useState(false);
+  const [errorNoEmail, setErrorNoEmail] = useState(false);
+  const [errorNoName, setErrorNoName] = useState(false);
+  const [errorNoPass, setErrorNoPass] = useState(false);
 
+  // signin and signup redirect
   let navigate = useNavigate();
 
+  // signin and signup validation
+  const isValidEmail = (emailAddress) => {
+    return /\S+@\S+\.\S+/.test(emailAddress);
+  };
+
   const handleSubmitSignin = () => {
-    if (step === 1 && email) {
+    if (step === 1 && email && isValidEmail(email)) {
       setStep(2);
       return;
     }
 
-    if (!email || !password) {
-      setError(true);
+    if (!email || !isValidEmail(email)) {
+      SetErrorNoEmailSignIn(true);
+      return;
+    }
+
+    if (!password) {
+      setErrorNoPassSignIn(true);
       return;
     }
 
@@ -76,9 +90,17 @@ const SignIn = (props) => {
       alert("wrong password");
       return;
     }
+    if (!name) {
+      setErrorNoName(true);
+      return;
+    }
 
-    if (!name || !emailSignUp || !passwordSignUp) {
-      setError(true);
+    if (!emailSignUp || !isValidEmail(emailSignUp)) {
+      setErrorNoEmail(true);
+      return;
+    }
+    if (!passwordSignUp || passwordSignUp.length < 6) {
+      setErrorNoPass(true);
       return;
     }
 
@@ -122,9 +144,11 @@ const SignIn = (props) => {
                 }}
                 sx={{ marginBottom: 1 }}
                 autoFocus
-                error
+                error={errorNoEmailSignIn ? true : false}
                 helperText={
-                  error ? "!  Enter your email or mobile phone number" : ""
+                  errorNoEmailSignIn
+                    ? "!  Enter your email or mobile phone number"
+                    : ""
                 }
               ></TextField>
             ) : (
@@ -141,8 +165,8 @@ const SignIn = (props) => {
                 }}
                 sx={{ marginBottom: 1 }}
                 autoFocus
-                error
-                helperText={error ? "!  Enter your password" : ""}
+                error={errorNoPassSignIn ? true : false}
+                helperText={errorNoPassSignIn ? "!  Enter your password" : ""}
               ></TextField>
             )}
             <Button
@@ -202,8 +226,8 @@ const SignIn = (props) => {
               setName(e.target.value);
             }}
             autoFocus
-            error
-            helperText={error ? "!  enter your name" : ""}
+            error={errorNoName ? true : false}
+            helperText={errorNoName ? "!  enter your name" : ""}
           ></TextField>
           <Typography variant="h7" sx={{ fontWeight: 700 }}>
             Mobile number or email
@@ -218,9 +242,9 @@ const SignIn = (props) => {
             onChange={(e) => {
               setEmailSignUp(e.target.value);
             }}
-            error
+            error={errorNoEmail ? true : false}
             helperText={
-              error ? "!  Enter your email or mobile phone number" : ""
+              errorNoEmail ? "!  Enter your email or mobile phone number" : ""
             }
           ></TextField>
           <Typography variant="h7" sx={{ fontWeight: 700 }}>
@@ -237,8 +261,8 @@ const SignIn = (props) => {
             onChange={(e) => {
               setPasswordSignUp(e.target.value);
             }}
-            error
-            helperText={error ? "!  Minimum 6 characters required" : ""}
+            error={errorNoPass ? true : false}
+            helperText={errorNoPass ? "!  Minimum 6 characters required" : ""}
           ></TextField>
           <Box
             sx={{
