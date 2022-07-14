@@ -59,3 +59,12 @@ model Category {
   catagory String
   Products Products[]
 }
+
+model Images {
+  id       Int     @id @default(autoincrement())
+  type     String
+  subType  String? @default("")
+  title    String? @default("")
+  url      String
+  redirect String?
+}
