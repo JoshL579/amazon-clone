@@ -17,39 +17,43 @@ const styles = {
   },
 }
 
-export default function Categories() {
+export default function Categories(props) {
+  const { images } = props;
   return (
     <Grid container sx={styles.container}>
-      {categories.map((category, i) => {
-        const { image, note, title } = category
-        return (
-          <Grid item xs={3} sx={styles.cardContainer} key={`catagory-${i}`}>
-            <Grid item sx={styles.card}>
-              <Typography variant="h6" fontWeight={700}>
-                {title}
-              </Typography>
-              <Link to="/">
-                {typeof image === 'string' ? (
-                  <img src={image} className="img" />
-                ) : (
-                  <Grid container spacing={1}>
-                    {image.map((img, i) => 
-                      <Grid item xs={6} key={`catagory-img-${i}`}>
-                        <img src={img} className="img" />
-                      </Grid>
-                    )}
-                  </Grid>
-                )}
+      {images.map((image) =>
+        <Grid item xs={3} sx={styles.cardContainer} key={`catagory-${image.id}`}>
+          <Grid item sx={styles.card}>
+            <Typography variant="h6" fontWeight={700}>
+              {image.title}
+            </Typography>
+            <Link to="/">
+              {typeof image.url === 'string' ? (
+                <img src={`/I/${image.url}`} className="img"
+                  style={{
+                    objectFit: 'contain',
+                    maxHeight: 300,
+                    minHeight: 300
+                  }}
+                />
+              ) : (
+                <Grid container spacing={1}>
+                  {image.map((img, i) =>
+                    <Grid item xs={6} key={`catagory-img-${i}`}>
+                      <img src={img} className="img" />
+                    </Grid>
+                  )}
+                </Grid>
+              )}
+            </Link>
+            <Typography>
+              <Link to="/" style={{ textDecoration: 'none' }}>
+                {`See more`}
               </Link>
-              <Typography>
-                <Link to="/" style={{ textDecoration: 'none' }}>
-                  {note}
-                </Link>
-              </Typography>
-            </Grid>
+            </Typography>
           </Grid>
-        )
-      })}
+        </Grid>
+      )}
     </Grid>
   )
 }

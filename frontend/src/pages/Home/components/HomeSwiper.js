@@ -32,20 +32,11 @@ const styles = {
 };
 
 export const HomeSwiper = (props) => {
-  const { type } = props;
+  const { type, images } = props;
 
-  const [homeProducts, setHomeProducts] = useState([]);
+  // console.log(images);
 
-  useEffect(() => {
-    axios.get(`http://localhost:3001/products/home`).then((res) => {
-      // console.log(res);
-      setHomeProducts(res.data.products);
-    });
-  }, []);
-
-  // console.log(homeProducts);
-
-  if (!homeProducts) {
+  if (!images) {
     return <div>Loading...</div>;
   }
 
@@ -62,14 +53,11 @@ export const HomeSwiper = (props) => {
         scrollbar={{ draggable: true }}
         style={{ height: 200 }}
       >
-        {homeProducts.map((homeProduct) => {
-          const { thumbnail } = homeProduct;
-          return (
-            <SwiperSlide style={styles.flex}>
-              <img style={styles.img} src={`I/${thumbnail}`}></img>
-            </SwiperSlide>
-          );
-        })}
+        {images.map((image) =>
+          <SwiperSlide style={styles.flex} key={image.id}>
+            <img style={styles.img} src={`I/${image.thumbnail}`}></img>
+          </SwiperSlide>
+        )}
       </Swiper>
     </Grid>
   );
