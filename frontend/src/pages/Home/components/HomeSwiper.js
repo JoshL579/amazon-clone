@@ -12,6 +12,7 @@ import "swiper/css/scrollbar";
 import { Navigation, Scrollbar } from "swiper";
 import { Typography, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const styles = {
   container: {
@@ -27,14 +28,13 @@ const styles = {
   },
   img: {
     width: "100%",
-    objectFit: "contain"
+    objectFit: "contain",
   },
 };
 
 export const HomeSwiper = (props) => {
   const { type, images } = props;
-
-  // console.log(images);
+  console.log(images)
 
   if (!images) {
     return <div>Loading...</div>;
@@ -53,11 +53,13 @@ export const HomeSwiper = (props) => {
         scrollbar={{ draggable: true }}
         style={{ height: 200 }}
       >
-        {images.map((image) =>
+        {images.map((image) => (
           <SwiperSlide style={styles.flex} key={image.id}>
-            <img style={styles.img} src={`/images/${image.thumbnail}`}></img>
+            <Link to={`/products/home/${image.id}`}>
+              <img style={styles.img} src={`/images/${image.thumbnail}`}></img>
+            </Link>
           </SwiperSlide>
-        )}
+        ))}
       </Swiper>
     </Grid>
   );

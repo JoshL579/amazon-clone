@@ -8,7 +8,9 @@ import {
   Button,
   Divider,
 } from "@mui/material";
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { theme } from "../../theme/theme";
 
 const styles = {
@@ -48,6 +50,13 @@ const styles = {
 
 const SingleProduct = () => {
   const [quantity, setQuantity] = React.useState("");
+  const {id} = useParams()
+
+  useEffect(()=> {
+    axios.get(`http://localhost:3001/products/home/${id}`).then((data)=> {
+      console.log(data)
+    })
+  },[id])
 
   const handleChange = (event) => {
     setQuantity(event.target.value);
