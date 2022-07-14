@@ -12,7 +12,7 @@ export default (props) => {
       {images.map((image) =>
         <SwiperSlide key={image.id}>
           <img
-            src={`/I/${image.url}`}
+            src={`/images/${image.url}`}
             className="img"
           ></img>
         </SwiperSlide>

@@ -55,7 +55,7 @@ export const HomeSwiper = (props) => {
       >
         {images.map((image) =>
           <SwiperSlide style={styles.flex} key={image.id}>
-            <img style={styles.img} src={`I/${image.thumbnail}`}></img>
+            <img style={styles.img} src={`/images/${image.thumbnail}`}></img>
           </SwiperSlide>
         )}
       </Swiper>

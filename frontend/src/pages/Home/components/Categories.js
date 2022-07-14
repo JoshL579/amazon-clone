@@ -29,7 +29,7 @@ export default function Categories(props) {
             </Typography>
             <Link to="/">
               {typeof image.url === 'string' ? (
-                <img src={`/I/${image.url}`} className="img"
+                <img src={`/images/${image.url}`} className="img"
                   style={{
                     objectFit: 'contain',
                     maxHeight: 300,
