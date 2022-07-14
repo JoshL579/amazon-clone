@@ -61,4 +61,7 @@ model Images {
   title    String? @default("")
   url      String
   redirect String?
+  price    Int?    @default(10)
+  rating   Int?    @default(3)
+  shipping Int?
 }
