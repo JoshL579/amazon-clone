@@ -25,14 +25,14 @@ export default function Home() {
         <TopSlider />
         <Categories />
         <HomeSwiper type="popular" />
-        <HomeSwiper type="book" />
+        {/* <HomeSwiper type="book" /> */}
         <Electronics />
-        <HomeSwiper type="home"/>
-        <HomeSwiper type="kitchen"/>
+        {/* <HomeSwiper type="home"/>
+        <HomeSwiper type="kitchen"/> */}
         <Game />
-        <HomeSwiper type="beauty"/>
+        {/* <HomeSwiper type="beauty"/>
         <HomeSwiper type="baby"/>
-        <HomeSwiper type="repurchase"/>
+        <HomeSwiper type="repurchase"/> */}
         <History />
         <SignInBtn />
       </Grid>

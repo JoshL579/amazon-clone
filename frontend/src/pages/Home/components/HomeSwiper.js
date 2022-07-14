@@ -1,62 +1,58 @@
-import { Swiper, SwiperSlide } from 'swiper/react'
-import popular from '../../../data/popularPc.json'
-import book from '../../../data/topSellerBook.json'
+import { Swiper, SwiperSlide } from "swiper/react";
+import popular from "../../../data/popularPc.json";
+import book from "../../../data/topSellerBook.json";
+import axios from "axios";
 
 // Import Swiper styles
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/scrollbar'
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/scrollbar";
 
 // import required modules
-import { Navigation, Scrollbar } from 'swiper'
-import { Typography, Grid } from '@mui/material'
+import { Navigation, Scrollbar } from "swiper";
+import { Typography, Grid } from "@mui/material";
+import { useEffect, useState } from "react";
 
 const styles = {
   container: {
-    p: '10px',
-    width: '100%',
-    backgroundColor: '#fff',
-    mb: '20px',
+    p: "10px",
+    width: "100%",
+    backgroundColor: "#fff",
+    mb: "20px",
   },
-}
-
-const data = {
-  popular: {
-    title: 'Popular products in PC internationally',
-    elements: popular,
+  flex: {
+    display: "flex",
+    justifyContent: "center",
+    width: 200,
   },
-  book: {
-    title: 'Top Sellers in Books for you',
-    elements: book,
+  img: {
+    width: "100%",
+    objectFit: "contain"
   },
-  home: {
-    title: 'International top sellers in Home',
-    elements: popular,
-  },
-  kitchen: {
-    title: 'International top sellers in Kitchen',
-    elements: popular,
-  },
-  beauty: {
-    title: 'Popular products in Beauty internationally',
-    elements: book,
-  },
-  baby: {
-    title: 'Top Sellers in Baby Products for you',
-    elements: popular,
-  },
-  repurchase: {
-    title: 'Frequently repurchased in Supplies',
-    elements: popular,
-  },
-}
+};
 
 export const HomeSwiper = (props) => {
-  const { type } = props
+  const { type } = props;
+
+  const [homeProducts, setHomeProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3001/products/home`).then((res) => {
+      // console.log(res);
+      setHomeProducts(res.data.products);
+    });
+  }, []);
+
+  // console.log(homeProducts);
+
+  if (!homeProducts) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Grid sx={styles.container}>
       <Typography variant="h6" fontWeight={700}>
-        {data[type].title}
+        Home
       </Typography>
       <Swiper
         slidesPerView={6}
@@ -66,15 +62,69 @@ export const HomeSwiper = (props) => {
         scrollbar={{ draggable: true }}
         style={{ height: 200 }}
       >
-        {data[type].elements.map((pc, i) => {
-          const { image } = pc
+        {homeProducts.map((homeProduct) => {
+          const { thumbnail } = homeProduct;
           return (
-            <SwiperSlide key={`${type}-${i}`}>
-              <img src={image}></img>
+            <SwiperSlide style={styles.flex}>
+              <img style={styles.img} src={`I/${thumbnail}`}></img>
             </SwiperSlide>
-          )
+          );
         })}
       </Swiper>
     </Grid>
-  )
-}
+  );
+
+  // <Grid sx={styles.container}>
+  //   <Typography variant="h6" fontWeight={700}>
+  //     {data[type].title}
+  //   </Typography>
+  //   <Swiper
+  //     slidesPerView={6}
+  //     spaceBetween={30}
+  //     modules={[Navigation, Scrollbar]}
+  //     navigation
+  //     scrollbar={{ draggable: true }}
+  //     style={{ height: 200 }}
+  //   >
+  //     {data[type].elements.map((pc, i) => {
+  //       const { image } = pc;
+  //       return (
+  //         <SwiperSlide key={`${type}-${i}`}>
+  //           <img src={image}></img>
+  //         </SwiperSlide>
+  //       );
+  //     })}
+  //   </Swiper>
+  // </Grid>
+};
+
+const data = {
+  popular: {
+    title: "Popular products in PC internationally",
+    elements: popular,
+  },
+  book: {
+    title: "Top Sellers in Books for you",
+    elements: book,
+  },
+  home: {
+    title: "International top sellers in Home",
+    elements: popular,
+  },
+  kitchen: {
+    title: "International top sellers in Kitchen",
+    elements: popular,
+  },
+  beauty: {
+    title: "Popular products in Beauty internationally",
+    elements: book,
+  },
+  baby: {
+    title: "Top Sellers in Baby Products for you",
+    elements: popular,
+  },
+  repurchase: {
+    title: "Frequently repurchased in Supplies",
+    elements: popular,
+  },
+};
