@@ -43,7 +43,7 @@ export const HomeSwiper = (props) => {
   return (
     <Grid sx={styles.container}>
       <Typography variant="h6" fontWeight={700}>
-        Home
+        {type}
       </Typography>
       <Swiper
         slidesPerView={6}

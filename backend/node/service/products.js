@@ -13,7 +13,7 @@ const homeProducts = async (req, res, next) => {
         categoryIds.push(category.id)
         categories[category.id] = category.catagory
     })
-    const products = await productDbHandler.findAllProducts(categoryIds, 10)
+    const products = await productDbHandler.findAllProducts(categoryIds, 20)
 
     const images = await imageDbHandler.findAllHomeImages()
     let heros = [], cards = []

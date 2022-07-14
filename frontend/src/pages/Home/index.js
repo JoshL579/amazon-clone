@@ -38,18 +38,26 @@ export default function Home() {
       <Grid item container sx={styles.container}>
         <TopSlider images={images.heros} />
         <Categories images={images.cards.filter((_, i) => i < 8)} />
-        <HomeSwiper type="popular"
+        <HomeSwiper type="Home"
           images={
             images.products.filter(
               (product) => product.categoryId === 7
             )
           }
         />
+        <Categories images={images.cards.filter((_, i) => i >= 8 && i < 12)} />
+        <HomeSwiper type="Book"
+          images={
+            images.products.filter(
+              (product) => product.categoryId === 5
+            )
+          }
+        />
         {/* <HomeSwiper type="book" /> */}
-        <Electronics />
+        {/* <Electronics /> */}
         {/* <HomeSwiper type="home"/>
         <HomeSwiper type="kitchen"/> */}
-        <Game />
+        {/* <Game /> */}
         {/* <HomeSwiper type="beauty"/>
         <HomeSwiper type="baby"/>
         <HomeSwiper type="repurchase"/> */}
