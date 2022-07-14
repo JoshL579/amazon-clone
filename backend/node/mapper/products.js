@@ -12,8 +12,8 @@ const findAllProducts = (categories, limit) => {
                 }
             }
         })
-        .then((user) => {
-            return user
+        .then((products) => {
+            return products
         })
         .catch((err) => {
             return null

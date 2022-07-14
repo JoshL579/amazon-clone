@@ -1,18 +1,12 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
 
-// Data source
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-// Generator
-generator client {
-  provider = "prisma-client-js"
-}
-
-// Data model
 model User {
   id           Int        @id @default(autoincrement())
   email        String     @unique
@@ -26,36 +20,45 @@ model User {
 model Products {
   id            Int       @id @default(autoincrement())
   title         String
-  price         Float     @default(10.00)
-  rating        Float     @default(5)
-  briefly       String?   @default("")
   description   String?
   spacification String?
   images        String?
   thumbnail     String?
   published     Boolean   @default(false)
   publishedTime DateTime? @default(now())
-  publisher     User?     @relation(fields: [publisherId], references: [id])
   publisherId   Int?
-  reviews       Reviews[]
-  category      Category? @relation(fields: [categoryId], references: [id])
+  briefly       String?   @default("")
+  price         Float     @default(10.00)
+  rating        Float     @default(5)
   categoryId    Int?
+  category      Category? @relation(fields: [categoryId], references: [id])
+  publisher     User?     @relation(fields: [publisherId], references: [id])
+  reviews       Reviews[]
 }
 
 model Reviews {
   id            Int       @id @default(autoincrement())
-  stars         Int       @default(-1) // -1: empty, 1-5: stars
+  stars         Int       @default(-1)
   title         String
   Description   String
   publishedTime DateTime? @default(now())
-  product       Products? @relation(fields: [productId], references: [id])
   productId     Int?
-  author        User?     @relation(fields: [authorId], references: [id])
   authorId      Int?
+  author        User?     @relation(fields: [authorId], references: [id])
+  product       Products? @relation(fields: [productId], references: [id])
 }
 
 model Category {
   id       Int        @id @default(autoincrement())
   catagory String
   Products Products[]
+}
+
+model Images {
+  id       Int     @id @default(autoincrement())
+  type     String
+  subType  String? @default("")
+  title    String? @default("")
+  url      String
+  redirect String?
 }

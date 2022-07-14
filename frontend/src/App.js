@@ -13,6 +13,7 @@ import Sell from "./pages/Sell";
 import Business from "./pages/SignIn/Business";
 import "./App.css";
 import Search from "./pages/Search";
+import SingleProduct from "./pages/SingleProduct";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/single" element={<SingleProduct />} />
           <Route path="/search" element={<Search />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/signin" element={<SignIn page="signin" />} />
