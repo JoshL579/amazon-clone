@@ -24,14 +24,16 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     width: 200,
+    height: 200,
   },
   img: {
     width: "100%",
+    height: "100%",
     objectFit: "contain",
   },
   title: {
-    textTransform: 'capitalize',
-  }
+    textTransform: "capitalize",
+  },
 };
 
 export const HomeSwiper = (props) => {
@@ -52,7 +54,7 @@ export const HomeSwiper = (props) => {
         modules={[Navigation, Scrollbar]}
         navigation
         scrollbar={{ draggable: true }}
-        style={{ height: 200 }}
+        style={{ height: 220 }}
       >
         {images.map((image) => (
           <SwiperSlide style={styles.flex} key={image.id}>

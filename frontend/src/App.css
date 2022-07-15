@@ -1,0 +1,8 @@
+.global-link {
+    color: #007185;
+}
+
+.global-link:hover {
+    color: orange;
+    text-decoration: underline;
+  }

@@ -1,8 +1,10 @@
 const productDbHandler = require("../mapper/products");
 const categoryDbHandler = require("../mapper/categories");
 const imageDbHandler = require("../mapper/images");
+const historyDbHandler = require("../mapper/history");
 
 const homeProducts = async (req, res, next) => {
+  const userId = req.params.uid||2
   const allCategories = await categoryDbHandler.findAllCategories();
 
   // empty categories
@@ -31,17 +33,24 @@ const homeProducts = async (req, res, next) => {
     }
   });
 
+  const history = await historyDbHandler.findHistoryById(userId)
+
   return res.json({
     products: products,
     categories: categories,
     heros: heros,
     cards: cards,
+    history: history
   });
 };
 
 const singleProduct = async (req, res, next) => {
-  const id = req.params.id;
-  const product = await productDbHandler.findProductById(id);
+  const productId = req.params.id;
+  const userId = req.params.uid
+  const product = await productDbHandler.findProductById(productId);
+  // create a history in table history
+  await historyDbHandler.createHistory(userId, productId)
+
   return res.json({
     product: product,
   });

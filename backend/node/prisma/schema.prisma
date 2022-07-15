@@ -15,6 +15,7 @@ model User {
   registerTime DateTime   @default(now())
   posts        Products[]
   reviews      Reviews[]
+  history      History[]
 }
 
 model Products {
@@ -61,4 +62,11 @@ model Images {
   title    String? @default("")
   url      String
   redirect String?
+}
+
+model History {
+  id     Int  @id @default(autoincrement())
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+  productId Int
 }
