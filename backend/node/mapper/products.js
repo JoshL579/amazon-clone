@@ -1,27 +1,42 @@
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient } = require("@prisma/client");
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
-const findAllProducts = (categories, limit) => {
-    return prisma.products
-        .findMany({
-            take: limit,
-            where: {
-                categoryId: {
-                    in: categories
-                }
-            }
-        })
-        .then((products) => {
-            return products
-        })
-        .catch((err) => {
-            return null
-        })
-}
+const findProductsByCategory = (limit) => {
+  return prisma.category
+    .findMany({
+      select: {
+        Products: {
+          take: limit
+        }
+      }
+    })
+    .then((products) => {
+      return products;
+    })
+    .catch((err) => {
+      return null;
+    });
+};
+
+const findProductById = (id) => {
+  return prisma.products
+    .findUnique({
+      where: {
+        id: parseInt(id)
+      },
+    })
+    .then((product) => {
+      return product;
+    })
+    .catch((err) => {
+      return null;
+    });
+};
 
 const productDbHandler = {
-    findAllProducts: findAllProducts,
-}
+  findProductsByCategory: findProductsByCategory,
+  findProductById: findProductById,
+};
 
-module.exports = productDbHandler
+module.exports = productDbHandler;
