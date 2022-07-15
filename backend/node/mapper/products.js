@@ -2,15 +2,14 @@ const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
-const findAllProducts = (categories, limit) => {
-  return prisma.products
+const findProductsByCategory = (limit) => {
+  return prisma.category
     .findMany({
-      take: limit,
-      where: {
-        categoryId: {
-          in: categories,
-        },
-      },
+      select: {
+        Products: {
+          take: limit
+        }
+      }
     })
     .then((products) => {
       return products;
@@ -20,11 +19,11 @@ const findAllProducts = (categories, limit) => {
     });
 };
 
-const fingSingleProduct = (id) => {
+const findProductById = (id) => {
   return prisma.products
     .findUnique({
       where: {
-        id: id,
+        id: parseInt(id)
       },
     })
     .then((product) => {
@@ -36,8 +35,8 @@ const fingSingleProduct = (id) => {
 };
 
 const productDbHandler = {
-  findAllProducts: findAllProducts,
-  fingSingleProduct: fingSingleProduct,
+  findProductsByCategory: findProductsByCategory,
+  findProductById: findProductById,
 };
 
 module.exports = productDbHandler;

@@ -1,9 +1,7 @@
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import Categories from "./components/Categories";
-import Electronics from "./components/Electronics";
 import TopSlider from "./components/TopSlider";
-import Game from "./components/Game";
 import History from "./components/History";
 import SignInBtn from "./components/SignInBtn";
 import { HomeSwiper } from "./components/HomeSwiper";
@@ -41,29 +39,17 @@ export default function Home() {
         <TopSlider images={images.heros} />
         <Categories images={images.cards.filter((_, i) => i < 8)} />
         <HomeSwiper
-          type="Home"
-          images={images.products.filter((product) => product.categoryId === 7)}
+          type={images.categories[7]}
+          images={images.products[7]}
         />
         <Categories images={images.cards.filter((_, i) => i >= 8 && i < 12)} />
-        <HomeSwiper
-          type="Book"
-          images={images.products.filter((product) => product.categoryId === 5)}
-        />
-        <HomeSwiper
-          type="Toy"
-          images={images.products.filter((product) => product.categoryId === 1)}
-        />
-        <HomeSwiper
-          type="PC"
-          images={images.products.filter((product) => product.categoryId === 3)}
-        />
-        {/* <Electronics /> */}
-        {/* <HomeSwiper type="home"/>
-        <HomeSwiper type="kitchen"/> */}
-        {/* <Game /> */}
-        {/* <HomeSwiper type="beauty"/>
-        <HomeSwiper type="baby"/>
-        <HomeSwiper type="repurchase"/> */}
+        {[5, 1, 3].map((category) =>
+          <HomeSwiper
+            type={images.categories[category]}
+            images={images.products[category]}
+            key={`section-${category}`}
+          />
+        )}
         <History />
         <SignInBtn />
       </Grid>

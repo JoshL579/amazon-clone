@@ -7,7 +7,7 @@ router.get("/home", async (req, res, next) => {
   return productService.homeProducts(req, res, next);
 });
 
-router.get("/home/:id", async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   return productService.singleProduct(req, res, next);
 });
 

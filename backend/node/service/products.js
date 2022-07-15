@@ -8,17 +8,20 @@ const homeProducts = async (req, res, next) => {
   // empty categories
   if (!allCategories) return res.json({ status: 404 });
 
-  let categoryIds = [],
-    categories = {};
+  let categories = {};
   allCategories.forEach((category) => {
-    categoryIds.push(category.id);
     categories[category.id] = category.catagory;
   });
-  const products = await productDbHandler.findAllProducts(categoryIds, 40);
+
+  const dbProducts = await productDbHandler.findProductsByCategory(10);
+  let products = {}
+  dbProducts.forEach((category) => {
+    if (category.Products.length === 0) return
+    products[category.Products[0].categoryId] = category.Products
+  })
 
   const images = await imageDbHandler.findAllHomeImages();
-  let heros = [],
-    cards = [];
+  let heros = [], cards = [];
   images.forEach((image) => {
     if (image.subType === "hero") {
       heros.push(image);
@@ -38,13 +41,11 @@ const homeProducts = async (req, res, next) => {
 
 const singleProduct = async (req, res, next) => {
   const id = req.params.id;
-  const product = await productDbHandler.fingSingleProduct(id);
+  const product = await productDbHandler.findProductById(id);
   return res.json({
     product: product,
   });
 };
-
-console.log(singleProduct)
 
 const productService = {
   homeProducts: homeProducts,

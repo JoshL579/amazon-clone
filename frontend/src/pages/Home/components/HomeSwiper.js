@@ -11,7 +11,6 @@ import "swiper/css/scrollbar";
 // import required modules
 import { Navigation, Scrollbar } from "swiper";
 import { Typography, Grid } from "@mui/material";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const styles = {
@@ -30,11 +29,13 @@ const styles = {
     width: "100%",
     objectFit: "contain",
   },
+  title: {
+    textTransform: 'capitalize',
+  }
 };
 
 export const HomeSwiper = (props) => {
   const { type, images } = props;
-  console.log(images)
 
   if (!images) {
     return <div>Loading...</div>;
@@ -42,7 +43,7 @@ export const HomeSwiper = (props) => {
 
   return (
     <Grid sx={styles.container}>
-      <Typography variant="h6" fontWeight={700}>
+      <Typography variant="h6" fontWeight={700} sx={styles.title}>
         {type}
       </Typography>
       <Swiper
@@ -55,7 +56,7 @@ export const HomeSwiper = (props) => {
       >
         {images.map((image) => (
           <SwiperSlide style={styles.flex} key={image.id}>
-            <Link to={`/products/home/${image.id}`}>
+            <Link to={`/detail/${image.id}`}>
               <img style={styles.img} src={`/images/${image.thumbnail}`}></img>
             </Link>
           </SwiperSlide>
@@ -63,29 +64,6 @@ export const HomeSwiper = (props) => {
       </Swiper>
     </Grid>
   );
-
-  // <Grid sx={styles.container}>
-  //   <Typography variant="h6" fontWeight={700}>
-  //     {data[type].title}
-  //   </Typography>
-  //   <Swiper
-  //     slidesPerView={6}
-  //     spaceBetween={30}
-  //     modules={[Navigation, Scrollbar]}
-  //     navigation
-  //     scrollbar={{ draggable: true }}
-  //     style={{ height: 200 }}
-  //   >
-  //     {data[type].elements.map((pc, i) => {
-  //       const { image } = pc;
-  //       return (
-  //         <SwiperSlide key={`${type}-${i}`}>
-  //           <img src={image}></img>
-  //         </SwiperSlide>
-  //       );
-  //     })}
-  //   </Swiper>
-  // </Grid>
 };
 
 const data = {
