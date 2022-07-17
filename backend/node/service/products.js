@@ -1,8 +1,10 @@
 const productDbHandler = require("../mapper/products");
 const categoryDbHandler = require("../mapper/categories");
 const imageDbHandler = require("../mapper/images");
+const historyDbHandler = require("../mapper/history");
 
 const homeProducts = async (req, res, next) => {
+  const userId = req.cookies.uid;
   const allCategories = await categoryDbHandler.findAllCategories();
 
   // empty categories
@@ -31,17 +33,37 @@ const homeProducts = async (req, res, next) => {
     }
   });
 
+  let historyProducts
+  if (userId) {
+    const histories = await historyDbHandler.findHistoryById(userId)
+    let pids = []
+    histories.forEach((history, i) => {
+      if (i > 9) return
+      pids.push(history.productId)
+    })
+    historyProducts = await productDbHandler.findProductsByIds(pids)
+  }
+
   return res.json({
     products: products,
     categories: categories,
     heros: heros,
     cards: cards,
+    history: historyProducts ?? []
   });
 };
 
 const singleProduct = async (req, res, next) => {
-  const id = req.params.id;
-  const product = await productDbHandler.findProductById(id);
+  const productId = req.params.id;
+  const userId = req.cookies.uid;
+  console.log('uid', userId)
+  const product = await productDbHandler.findProductById(productId);
+
+  // create a history in table history
+  // check if history exist
+  const isExist = await historyDbHandler.findHistoryByUidAndPid(userId, productId)
+  if (!isExist) await historyDbHandler.createHistory(userId, productId)
+
   return res.json({
     product: product,
   });

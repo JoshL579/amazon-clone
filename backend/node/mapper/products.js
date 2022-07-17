@@ -34,9 +34,21 @@ const findProductById = (id) => {
     });
 };
 
+const findProductsByIds = (ids) => {
+  return prisma.products
+    .findMany({
+      where: {
+        id: {
+          in: ids
+        }
+      }
+    })
+}
+
 const productDbHandler = {
   findProductsByCategory: findProductsByCategory,
   findProductById: findProductById,
+  findProductsByIds: findProductsByIds
 };
 
 module.exports = productDbHandler;

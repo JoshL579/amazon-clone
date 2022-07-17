@@ -1,5 +1,5 @@
 import { get, post } from '../httpMethods'
 
-export const getImages = () => {
-    return get('/products/home')
+export const getImages = (uid) => {
+    return get(`/products/home?uid=${uid}`)
 }

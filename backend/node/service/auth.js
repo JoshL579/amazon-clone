@@ -19,7 +19,7 @@ const login = async (req, res, next) => {
     return res.json({ success: false, message: "Invalid Email/Password" });
   }
 
-  const token = generateJwt(user.id);
+  const token = generateJwt(true, user.id);
   res.cookie("token", token, { httpOnly: true });
   return res.json({ success: true });
 };

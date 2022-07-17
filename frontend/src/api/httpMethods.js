@@ -1,8 +1,9 @@
 import requests from './requests'
 
-export const get = (url, params) => {
+export const get = (url, params, header = null) => {
     return requests.get(url, {
-        params: params
+        params: params,
+        ...header ? { headers: header } : null
     })
 }
 
