@@ -23,6 +23,28 @@ const createHistory = (userId, productId) => {
     })
 }
 
+const findHistoryByUidAndPid = (userId, productId) => {
+  return prisma.history
+    .findFirst({
+      where: {
+        AND: {
+          ...userId.length === 16
+            ? { tempUserId: userId }
+            : { userId: parseInt(userId, 10) },
+          productId: parseInt(productId, 10),
+        },
+      }
+    })
+    .then((product) => {
+      console.log(product)
+      return product;
+    })
+    .catch((err) => {
+      console.error(err)
+      return null;
+    });
+}
+
 const findHistoryById = (userId) => {
   console.log(userId.length)
   return prisma.history
@@ -45,7 +67,8 @@ const findHistoryById = (userId) => {
 
 const historyDbHandler = {
   createHistory: createHistory,
-  findHistoryById: findHistoryById
+  findHistoryById: findHistoryById,
+  findHistoryByUidAndPid: findHistoryByUidAndPid
 }
 
 module.exports = historyDbHandler

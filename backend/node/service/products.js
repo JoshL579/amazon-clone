@@ -49,9 +49,11 @@ const singleProduct = async (req, res, next) => {
   const userId = req.cookies.uid;
   console.log('uid', userId)
   const product = await productDbHandler.findProductById(productId);
+
   // create a history in table history
-  dbRes = await historyDbHandler.createHistory(userId, productId)
-  console.log(dbRes)
+  // check if history exist
+  const isExist = await historyDbHandler.findHistoryByUidAndPid(userId, productId)
+  if (!isExist) await historyDbHandler.createHistory(userId, productId)
 
   return res.json({
     product: product,
