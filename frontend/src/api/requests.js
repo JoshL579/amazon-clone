@@ -1,9 +1,10 @@
 import Axios from 'axios'
 
-const baseUrl = 'http://localhost:3001'
+const baseUrl = ''
 
 const reqeusts = Axios.create({
-    baseURL: baseUrl
+    baseURL: baseUrl,
+    withCredentials: true
 })
 
 reqeusts.interceptors.request.use(

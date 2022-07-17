@@ -65,8 +65,9 @@ model Images {
 }
 
 model History {
-  id     Int  @id @default(autoincrement())
-  userId Int
-  user   User @relation(fields: [userId], references: [id])
-  productId Int
+  id         Int    @id @default(autoincrement())
+  tempUserId String @default("")
+  userId     Int?
+  user       User?  @relation(fields: [userId], references: [id])
+  productId  Int
 }
