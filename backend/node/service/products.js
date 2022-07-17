@@ -33,14 +33,23 @@ const homeProducts = async (req, res, next) => {
     }
   });
 
-  const history = await historyDbHandler.findHistoryById(userId)
+  let historyProducts
+  if (userId) {
+    const histories = await historyDbHandler.findHistoryById(userId)
+    let pids = []
+    histories.forEach((history, i) => {
+      if (i > 9) return
+      pids.push(history.productId)
+    })
+    historyProducts = await productDbHandler.findProductsByIds(pids)
+  }
 
   return res.json({
     products: products,
     categories: categories,
     heros: heros,
     cards: cards,
-    history: history
+    history: historyProducts ?? []
   });
 };
 

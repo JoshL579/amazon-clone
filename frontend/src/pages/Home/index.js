@@ -57,7 +57,7 @@ export default function Home() {
           <Typography fontWeight={700}>
             You are on amazon.com. You can also shop on Amazon Canada for
             millions of products with fast local delivery.{" "}
-            <Link className="global-link"  to="https://www.amazon.ca/">
+            <Link className="global-link" to="https://www.amazon.ca/">
               Click here to go to amazon.ca
             </Link>
           </Typography>
@@ -72,7 +72,7 @@ export default function Home() {
             key={`section-${category}`}
           />
         ))}
-        <History />
+        <History images={images.history} />
         <SignInBtn />
       </Grid>
     </Grid>

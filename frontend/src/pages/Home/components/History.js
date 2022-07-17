@@ -17,7 +17,9 @@ const styles = {
   },
 };
 
-export default function History() {
+export default function History(props) {
+  const { images } = props;
+  if (images.length === 0) return <></>
   return (
     <Paper sx={styles.history}>
       <Typography variant="h6" fontWeight={700}>
@@ -26,41 +28,44 @@ export default function History() {
       <Swiper
         slidesPerView={6}
         spaceBetween={30}
-        pagination={{
-          type: "fraction",
-        }}
+        // pagination={{
+        //   type: "fraction",
+        // }}
+        pagination={false}
         modules={[Navigation, Pagination]}
         navigation={true}
-        style={{ height: 400 }}
+        style={{ height: 'fit-content' }}
       >
-        {histories.map((history, i) => {
-          const { image, price, numberOfReviews, rating, name, shipping } =
-            history;
-          return (
-            <SwiperSlide key={`history-${i}`}>
-              <img src={image}></img>
-              <Typography>{name}</Typography>
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Rating
-                  name="read-only"
-                  value={rating}
-                  readOnly
-                  precision={0.5}
-                  size="small"
-                />
-                <Typography variant="body2" component="p" marginLeft={1.5}>
+        {images.reverse().map((image, i) =>
+          <SwiperSlide key={`history-${image.id}`}>
+            <div style={{ textAlign: 'center' }}>
+              <img src={`/images/${image.thumbnail}`} style={{ width: 100 }}></img>
+            </div>
+            <Typography>{
+              image.title.length > 80
+                ? image.title.slice(0, 80) + `...`
+                : image.title
+            }</Typography>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Rating
+                name="read-only"
+                value={image.rating}
+                readOnly
+                precision={0.5}
+                size="small"
+              />
+              {/* <Typography variant="body2" component="p" marginLeft={1.5}>
                   {numberOfReviews}
-                </Typography>
-              </Box>
-              <Typography variant="h6" component="p" fontWeight={700}>
-                ${price}
-              </Typography>
-              <Typography variant="body2" component="p">
+                </Typography> */}
+            </Box>
+            <Typography variant="h6" component="p" fontWeight={700}>
+              ${image.price.toFixed(2)}
+            </Typography>
+            {/* <Typography variant="body2" component="p">
                 ${shipping} shipping
-              </Typography>
-            </SwiperSlide>
-          );
-        })}
+              </Typography> */}
+          </SwiperSlide>
+        )}
       </Swiper>
     </Paper>
   );
