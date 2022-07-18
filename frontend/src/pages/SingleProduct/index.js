@@ -59,7 +59,14 @@ const SingleProduct = () => {
   const { id } = useParams()
 
   useEffect(() => {
-    getProductDetail(id).then((res) => {
+    // 1. check cookie "HISTORY" exist
+    // 1.1 if not exist, add new cookie: {HISOTRY: []}
+    // 1.2 if exist, get existing array from cookie
+    // 2. push id into array
+    // 3. setCookie
+
+    // update backend history
+    getProductDetail(id, 2).then((res) => {
       setProduct(res.product)
     }).finally(() => {
       setLoading(false)
