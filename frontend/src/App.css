@@ -6,3 +6,7 @@
     color: orange;
     text-decoration: underline;
   }
+
+  .singleBtn:hover {
+    background-color: lightgray !important;
+  }
