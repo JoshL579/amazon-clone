@@ -15,6 +15,7 @@ import "./App.css";
 import Search from "./pages/Search";
 import SingleProduct from "./pages/SingleProduct";
 import { AuthContextProvider } from "./context/AuthContext";
+import Checkout from "./pages/Checkout/Checkout";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/detail/:id" element={<SingleProduct />} />
             <Route path="/search" element={<Search />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/signin" element={<SignIn page="signin" />} />
             <Route path="/signup" element={<SignIn page="signup" />} />
             <Route path="/business" element={<Business />} />

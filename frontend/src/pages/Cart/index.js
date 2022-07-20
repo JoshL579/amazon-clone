@@ -25,7 +25,7 @@ export default function Home() {
     >
       <Grid
         item
-        xs={8}
+        xs={9}
         sx={{ background: "white" }}
         display="flex"
         flexDirection="column"
@@ -71,7 +71,7 @@ export default function Home() {
           <Typography variant="h6">$2,784</Typography>
         </Grid>
       </Grid>
-      <Grid item xs={4} display="flex" flexDirection="column" gap={2}>
+      <Grid item xs={3} display="flex" flexDirection="column" gap={2}>
         <Grid display="flex" gap={1}>
           <CheckCircleOutlineIcon
             sx={{
@@ -92,9 +92,11 @@ export default function Home() {
             <Typography>This order contains a gift</Typography>
           </Grid>
         </Grid>
-        <Button className="cartBtn" sx={styles.btn} variant="contained">
-          Proceed to checkout
-        </Button>
+        <Link to="/checkout">
+          <Button className="cartBtn" sx={styles.btn} variant="contained" fullWidth>
+            Proceed to checkout
+          </Button>
+        </Link>
       </Grid>
     </Grid>
   );
