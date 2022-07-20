@@ -5,13 +5,15 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { theme } from "../../../theme/theme";
 
 const SingleSideBar = ({ drawer, setDrawer }) => {
-  const { cartItems } = useSelector((store) => store.cart);
-  const cartArr = cartItems[0];
-  //   console.log(cartArr);
+  const { cartItems, cartTotalQuantity, cartTotalAmount } = useSelector(
+    (store) => store.cart
+  );
+
+  if (cartItems.length === 0) return <div>Loading...</div>;
 
   return (
     <Drawer anchor="right" open={drawer} onClose={() => setDrawer(false)}>
-      <Box width="50vw" sx={{ background: "#e7e7e7" }}>
+      <Box width="50vw">
         <Grid
           height="20vh"
           container
@@ -24,7 +26,7 @@ const SingleSideBar = ({ drawer, setDrawer }) => {
             display="flex"
             flexDirection="column"
             alignItems="center"
-            gap={3}
+            gap={1}
           >
             <Grid display="flex" gap={1}>
               <CheckCircleOutlineIcon
@@ -37,15 +39,17 @@ const SingleSideBar = ({ drawer, setDrawer }) => {
               <Typography variant="h6">Added to Cart</Typography>
             </Grid>
             <img
-              src="https://via.placeholder.com/50x50.png"
-              style={{ width: 50 }}
+              src={`/images/${cartItems[0].thumbnail}`}
+              style={{ width: 50, height: 50, objectFit:"contain" }}
             ></img>
           </Grid>
           <Grid item display="flex" flexDirection="column" gap={1}>
             <Grid item display="flex" gap={1}>
-              <Typography variant="h6">Cart subtotal(4 items):</Typography>
+              <Typography variant="h6">
+                Cart subtotal({cartTotalQuantity} items):
+              </Typography>
               <Typography fontWeight={700} color={theme.palette.orange.main}>
-                $145.56
+                $ {cartTotalAmount}
               </Typography>
             </Grid>
             <Grid item display="flex" gap={2}>
@@ -64,11 +68,12 @@ const SingleSideBar = ({ drawer, setDrawer }) => {
                 variant="contained"
                 className="singleBtn"
               >
-                Proceed to checkout (4 items)
+                Proceed to checkout ({cartTotalQuantity} items)
               </Button>
             </Grid>
           </Grid>
         </Grid>
+        <Grid sx={{ background: "#e7e7e7", height: "80vh" }}></Grid>
       </Box>
     </Drawer>
   );

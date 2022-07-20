@@ -14,8 +14,8 @@ import { useParams } from "react-router-dom";
 import { theme } from "../../theme/theme";
 import { getProductDetail } from "../../api/endpoints/detail";
 import SingleSideBar from "./components/SingleSideBar";
-import { add } from "../../store/cartReducer";
 import { useDispatch } from "react-redux";
+import { addToCart } from "../../store/cartReducer";
 
 const styles = {
   container: {
@@ -63,6 +63,10 @@ const SingleProduct = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const dispatch = useDispatch();
 
+  const handleAddToCard = (product) => {
+    dispatch(addToCart(product));
+  };
+
   useEffect(() => {
     // 1. check cookie "HISTORY" exist
     // 1.1 if not exist, add new cookie: {HISOTRY: []}
@@ -74,6 +78,7 @@ const SingleProduct = () => {
     getProductDetail(id, 2)
       .then((res) => {
         setProduct(res.product);
+        // console.log(res.product);
       })
       .finally(() => {
         setLoading(false);
@@ -140,7 +145,7 @@ const SingleProduct = () => {
             variant="outlined"
             onClick={() => {
               setIsDrawerOpen(true);
-              dispatch(add(id));
+              handleAddToCard(product);
             }}
           >
             Add to Cart
