@@ -64,7 +64,7 @@ export const SubHeader = () => {
   return (
     <AppBar
       position="static"
-      sx={{ backgroundColor: theme.palette.primary.light, maxHeight: '39px' }}
+      sx={{ background: theme.palette.primary.light, maxHeight: '39px' }}
     >
       <Toolbar style={{ maxHeight: 'inherit', minHeight: '39px'}}>
         <HeaderButtonWrapper sx={styles.toggle}>
