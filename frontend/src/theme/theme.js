@@ -9,12 +9,12 @@ export const theme = createTheme({
     },
     secondary: {
       light: "#FFD814",
-      main: "#febd69",
+      main: "##F7CA00",
     },
     grey: {
       main: "#f3f3f3",
       contrastText: "#000",
-      header: "#F5F6F6"
+      header: "#F5F6F6",
     },
     blue: {
       main: "#0066c0",

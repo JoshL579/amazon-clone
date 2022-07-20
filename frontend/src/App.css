@@ -10,3 +10,7 @@
   .singleBtn:hover {
     background-color: lightgray !important;
   }
+
+  .cartBtn:hover {
+    background-color: #febd69 !important;
+  }
