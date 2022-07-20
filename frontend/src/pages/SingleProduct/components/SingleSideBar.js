@@ -3,6 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { theme } from "../../../theme/theme";
+import { Link } from "react-router-dom";
 
 const SingleSideBar = ({ drawer, setDrawer }) => {
   const { cartItems, cartTotalQuantity, cartTotalAmount } = useSelector(
@@ -40,7 +41,7 @@ const SingleSideBar = ({ drawer, setDrawer }) => {
             </Grid>
             <img
               src={`/images/${cartItems[0].thumbnail}`}
-              style={{ width: 50, height: 50, objectFit:"contain" }}
+              style={{ width: 50, height: 50, objectFit: "contain" }}
             ></img>
           </Grid>
           <Grid item display="flex" flexDirection="column" gap={1}>
@@ -53,23 +54,27 @@ const SingleSideBar = ({ drawer, setDrawer }) => {
               </Typography>
             </Grid>
             <Grid item display="flex" gap={2}>
-              <Button
-                sx={{ background: "white", color: "black" }}
-                variant="contained"
-                className="singleBtn"
-              >
-                Cart
-              </Button>
-              <Button
-                sx={{
-                  background: theme.palette.secondary.light,
-                  color: "black",
-                }}
-                variant="contained"
-                className="singleBtn"
-              >
-                Proceed to checkout ({cartTotalQuantity} items)
-              </Button>
+              <Link to="/cart">
+                <Button
+                  sx={{ background: "white", color: "black" }}
+                  variant="contained"
+                  className="singleBtn"
+                >
+                  Cart
+                </Button>
+              </Link>
+              <Link to="/checkout">
+                <Button
+                  sx={{
+                    background: theme.palette.secondary.light,
+                    color: "black",
+                  }}
+                  variant="contained"
+                  className="singleBtn"
+                >
+                  Proceed to checkout ({cartTotalQuantity} items)
+                </Button>
+              </Link>
             </Grid>
           </Grid>
         </Grid>

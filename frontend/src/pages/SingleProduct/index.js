@@ -17,10 +17,11 @@ import SingleSideBar from "./components/SingleSideBar";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/cartReducer";
 import SingleSelect from "./components/SingleSelect";
+import SingleModal from "./components/SingleModal";
 
 const styles = {
   container: {
-    p: 3,
+    p: 8,
     mt: 3,
     // mr: "auto",
     // ml: "auto",
@@ -60,6 +61,11 @@ const SingleProduct = () => {
   const [loading, setLoading] = React.useState(true);
   const { id } = useParams();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const dispatch = useDispatch();
 
   const handleAddToCard = (product) => {
@@ -101,11 +107,24 @@ const SingleProduct = () => {
         sx={styles.container}
         direction="row"
       >
-        <Grid item xs={4}>
-          <img
-            src={`/images/${product.thumbnail}`}
-            style={{ maxWidth: "100%", objectFit: "contain", minWidth: 300 }}
-          ></img>
+        <Grid item xs={3}>
+          <SingleModal
+            openModal={handleOpen}
+            closeModal={handleClose}
+            open={open}
+            product={product}
+          />
+          <Button onClick={handleOpen}>
+            <img
+              src={`/images/${product.thumbnail}`}
+              style={{
+                maxWidth: "100%",
+                objectFit: "contain",
+                minWidth: 300,
+                maxHeight: 380,
+              }}
+            ></img>
+          </Button>
         </Grid>
         <Grid item xs={5}>
           <Typography variant="h5">{product.title}</Typography>
@@ -145,7 +164,11 @@ const SingleProduct = () => {
           <Typography variant="h6">About this item</Typography>
           <Typography>{product.briefly}</Typography>
         </Grid>
-        <Grid item xs={2} sx={[styles.containerBorder, { p: 2 }]}>
+        <Grid
+          item
+          xs={3}
+          sx={[styles.containerBorder, { p: 2, height: "60vh" }]}
+        >
           <Grid display="flex" flexDirection="column" gap={1}>
             <Typography fontWeight={700} variant="h5">
               $29.99
