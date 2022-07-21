@@ -15,7 +15,7 @@ import "./App.css";
 import Search from "./pages/Search";
 import SingleProduct from "./pages/SingleProduct";
 import { AuthContextProvider } from "./context/AuthContext";
-import Checkout from "./pages/Checkout/Checkout";
+import Checkout from "./pages/Checkout/Index";
 import CartEmpty from "./pages/Cart/CartEmpty";
 
 function App() {

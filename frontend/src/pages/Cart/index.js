@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CartEmpty from "./CartEmpty";
 import { getProductDetail } from "../../api/endpoints/detail";
 import { removeFromCart } from "../../store/cartReducer";
+import { calculateTotals } from "../../store/cartReducer";
 
 const styles = {
   btn: {
@@ -28,6 +29,10 @@ export default function Cart() {
   const { cartItems, cartTotalQuantity, cartTotalPrice } = useSelector(
     (store) => store.cart
   );
+
+  useEffect(() => {
+    dispatch(calculateTotals());
+  }, [cartItems]);
 
   if (cartItems.length === 0) {
     return <CartEmpty />;

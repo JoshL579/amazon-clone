@@ -8,6 +8,8 @@ const SingleSelect = ({ quantity, setQuantity }) => {
     setQuantity(e.target.value);
   };
 
+  console.log(quantity);
+
   return (
     <Box width="100px">
       <TextField

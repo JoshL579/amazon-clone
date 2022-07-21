@@ -15,13 +15,12 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/cartReducer";
 import SingleSelect from "./components/SingleSelect";
 import SingleModal from "./components/SingleModal";
+import { useSelector } from "react-redux";
 
 const styles = {
   container: {
     p: 8,
     mt: 3,
-    // mr: "auto",
-    // ml: "auto",
     maxWidth: 1440,
   },
   containerBorder: {
@@ -86,6 +85,7 @@ const SingleProduct = () => {
         setLoading(false);
       });
   }, []);
+
 
   if (loading) return <></>;
 
@@ -180,6 +180,7 @@ const SingleProduct = () => {
               onClick={() => {
                 setIsDrawerOpen(true);
                 handleAddToCart(product);
+                setQuantity(quantity);
               }}
             >
               Add to Cart
