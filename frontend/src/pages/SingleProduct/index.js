@@ -57,6 +57,7 @@ const SingleProduct = () => {
   const [loading, setLoading] = React.useState(true);
   const { id } = useParams();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -64,7 +65,7 @@ const SingleProduct = () => {
 
   const dispatch = useDispatch();
 
-  const handleAddToCard = (product) => {
+  const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
 
@@ -171,14 +172,14 @@ const SingleProduct = () => {
               In Stock
             </Typography>
             <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <SingleSelect />
+              <SingleSelect quantity={quantity} setQuantity={setQuantity} />
             </FormControl>
             <Button
               sx={styles.btn.cart}
               variant="outlined"
               onClick={() => {
                 setIsDrawerOpen(true);
-                handleAddToCard(product);
+                handleAddToCart(product);
               }}
             >
               Add to Cart

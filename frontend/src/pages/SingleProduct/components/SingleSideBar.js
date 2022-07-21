@@ -76,7 +76,7 @@ const SingleSideBar = ({ drawer, setDrawer }) => {
                     color: "black",
                   }}
                   variant="contained"
-                  className="singleBtn"
+                  className="cartBtn"
                 >
                   Proceed to checkout ({cartTotalQuantity} items)
                 </Button>

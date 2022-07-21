@@ -16,6 +16,7 @@ import Search from "./pages/Search";
 import SingleProduct from "./pages/SingleProduct";
 import { AuthContextProvider } from "./context/AuthContext";
 import Checkout from "./pages/Checkout/Checkout";
+import CartEmpty from "./pages/Cart/CartEmpty";
 
 function App() {
   return (
