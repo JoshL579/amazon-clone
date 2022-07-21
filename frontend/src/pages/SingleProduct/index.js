@@ -3,12 +3,9 @@ import {
   Rating,
   Typography,
   FormControl,
-  MenuItem,
-  Select,
   Button,
   Divider,
 } from "@mui/material";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { theme } from "../../theme/theme";
@@ -56,7 +53,6 @@ const styles = {
 };
 
 const SingleProduct = () => {
-  const [quantity, setQuantity] = React.useState("");
   const [product, setProduct] = React.useState({});
   const [loading, setLoading] = React.useState(true);
   const { id } = useParams();
@@ -89,10 +85,6 @@ const SingleProduct = () => {
         setLoading(false);
       });
   }, []);
-
-  // const handleChange = (event) => {
-  //   setQuantity(event.target.value);
-  // };
 
   if (loading) return <></>;
 
@@ -180,16 +172,6 @@ const SingleProduct = () => {
             </Typography>
             <FormControl sx={{ m: 1, minWidth: 120 }}>
               <SingleSelect />
-              {/* <Select
-                value={quantity}
-                onChange={handleChange}
-                displayEmpty
-                inputProps={{ "aria-label": "Without label" }}
-              >
-                <MenuItem value="" sx={{ p: 0 }}>
-                  1
-                </MenuItem>
-              </Select> */}
             </FormControl>
             <Button
               sx={styles.btn.cart}
