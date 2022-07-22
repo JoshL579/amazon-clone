@@ -1,16 +1,22 @@
 import { Box, Button, Drawer, Grid, Typography } from "@mui/material";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { theme } from "../../../theme/theme";
 import { Link } from "react-router-dom";
+import { calculateTotals } from "../../../store/cartReducer";
 
 const SingleSideBar = ({ drawer, setDrawer }) => {
-  const { cartItems, cartTotalQuantity, cartTotalAmount } = useSelector(
+  const { cartItems, cartTotalQuantity, cartTotalPrice } = useSelector(
     (store) => store.cart
   );
+  const dispatch = useDispatch();
 
-  if (cartItems.length === 0) return <div>Loading...</div>;
+  useEffect(() => {
+    dispatch(calculateTotals());
+  }, [cartItems]);
+
+  if (cartItems.length === 0) return <></>;
 
   return (
     <Drawer anchor="right" open={drawer} onClose={() => setDrawer(false)}>
@@ -40,7 +46,7 @@ const SingleSideBar = ({ drawer, setDrawer }) => {
               <Typography variant="h6">Added to Cart</Typography>
             </Grid>
             <img
-              src={`/images/${cartItems[0].thumbnail}`}
+              src={`/images/${cartItems[cartItems.length - 1].thumbnail}`}
               style={{ width: 50, height: 50, objectFit: "contain" }}
             ></img>
           </Grid>
@@ -50,7 +56,7 @@ const SingleSideBar = ({ drawer, setDrawer }) => {
                 Cart subtotal({cartTotalQuantity} items):
               </Typography>
               <Typography fontWeight={700} color={theme.palette.orange.main}>
-                $ {cartTotalAmount}
+                $ {cartTotalPrice.toFixed(2)}
               </Typography>
             </Grid>
             <Grid item display="flex" gap={2}>
@@ -70,7 +76,7 @@ const SingleSideBar = ({ drawer, setDrawer }) => {
                     color: "black",
                   }}
                   variant="contained"
-                  className="singleBtn"
+                  className="cartBtn"
                 >
                   Proceed to checkout ({cartTotalQuantity} items)
                 </Button>

@@ -3,12 +3,9 @@ import {
   Rating,
   Typography,
   FormControl,
-  MenuItem,
-  Select,
   Button,
   Divider,
 } from "@mui/material";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { theme } from "../../theme/theme";
@@ -18,13 +15,12 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/cartReducer";
 import SingleSelect from "./components/SingleSelect";
 import SingleModal from "./components/SingleModal";
+import { useSelector } from "react-redux";
 
 const styles = {
   container: {
     p: 8,
     mt: 3,
-    // mr: "auto",
-    // ml: "auto",
     maxWidth: 1440,
   },
   containerBorder: {
@@ -56,11 +52,11 @@ const styles = {
 };
 
 const SingleProduct = () => {
-  const [quantity, setQuantity] = React.useState("");
   const [product, setProduct] = React.useState({});
   const [loading, setLoading] = React.useState(true);
   const { id } = useParams();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -68,7 +64,7 @@ const SingleProduct = () => {
 
   const dispatch = useDispatch();
 
-  const handleAddToCard = (product) => {
+  const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
 
@@ -90,9 +86,6 @@ const SingleProduct = () => {
       });
   }, []);
 
-  // const handleChange = (event) => {
-  //   setQuantity(event.target.value);
-  // };
 
   if (loading) return <></>;
 
@@ -179,24 +172,15 @@ const SingleProduct = () => {
               In Stock
             </Typography>
             <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <SingleSelect />
-              {/* <Select
-                value={quantity}
-                onChange={handleChange}
-                displayEmpty
-                inputProps={{ "aria-label": "Without label" }}
-              >
-                <MenuItem value="" sx={{ p: 0 }}>
-                  1
-                </MenuItem>
-              </Select> */}
+              <SingleSelect quantity={quantity} setQuantity={setQuantity} />
             </FormControl>
             <Button
               sx={styles.btn.cart}
               variant="outlined"
               onClick={() => {
                 setIsDrawerOpen(true);
-                handleAddToCard(product);
+                handleAddToCart(product);
+                setQuantity(quantity);
               }}
             >
               Add to Cart

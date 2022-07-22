@@ -1,8 +1,11 @@
 import { MenuItem, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 const CartSelect = () => {
+  const { cartItems } = useSelector((store) => store.cart);
+
   const [quantity, setQuantity] = useState("");
   const handleChange = (e) => {
     setQuantity(e.target.value);
