@@ -11,6 +11,7 @@ import { theme } from "../../theme/theme";
 import visa from "../../assets/img/Checkout/3767696321552037059.svg";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const styles = {
   flex: {
@@ -158,17 +159,19 @@ const Checkout = () => {
           </Grid>
         </Grid>
         <Grid item xs={3.4} sx={[styles.border, { p: 3 }]}>
-          <Button
-            variant="contained"
-            fullWidth
-            sx={[
-              styles.border,
-              { background: theme.palette.secondary.light, color: "black" },
-            ]}
-            className="cartBtn"
-          >
-            Place your order
-          </Button>
+          <Link to="/orderfinish">
+            <Button
+              variant="contained"
+              fullWidth
+              sx={[
+                styles.border,
+                { background: theme.palette.secondary.light, color: "black" },
+              ]}
+              className="cartBtn"
+            >
+              Place your order
+            </Button>
+          </Link>
           <Typography variant="body2" textAlign="center" sx={{ p: 1 }}>
             By placing your order, you agree to Amazon's privacy notice and
             conditions of use.
