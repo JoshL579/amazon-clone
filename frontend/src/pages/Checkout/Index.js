@@ -103,6 +103,7 @@ const Checkout = () => {
                     styles.flex,
                     { borderBottom: "1px solid lightgrey", mb: 2 },
                   ]}
+                  key={item.id}
                 >
                   <Grid item xs={1}>
                     <img
