@@ -71,10 +71,12 @@ export default function Cart() {
               key={item.id}
             >
               <Grid item xs={2}>
-                <img
-                  style={{ width: 150, height: 175, objectFit: "contain" }}
-                  src={`/images/${item.thumbnail}`}
-                ></img>
+                <Link to={`/detail/${item.id}`}>
+                  <img
+                    style={{ width: 150, height: 175, objectFit: "contain" }}
+                    src={`/images/${item.thumbnail}`}
+                  ></img>
+                </Link>
               </Grid>
               <Grid item xs={8}>
                 <Typography variant="h6">{item.title}</Typography>
