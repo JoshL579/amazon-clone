@@ -68,6 +68,8 @@ const SingleProduct = () => {
     dispatch(addToCart(product));
   };
 
+  // console.log(quantity);
+
   useEffect(() => {
     // 1. check cookie "HISTORY" exist
     // 1.1 if not exist, add new cookie: {HISOTRY: []}
