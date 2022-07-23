@@ -91,7 +91,7 @@ export default function Cart() {
                   </Typography>
                 </Grid>
                 <Grid display="flex" alignItems="center" gap={2}>
-                  <CartSelect />
+                  <CartSelect item={item} />
                   <Divider orientation="vertical" variant="middle" flexItem />
                   <Button
                     onClick={() => dispatch(removeFromCart(item.id))}

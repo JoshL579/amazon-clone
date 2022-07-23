@@ -1,14 +1,23 @@
 import { MenuItem, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setItemQuantity } from "../../store/cartReducer";
 
-const CartSelect = () => {
+const CartSelect = (props) => {
+  const { item } = props;
   const { cartItems } = useSelector((store) => store.cart);
 
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState(item.cartQuantity);
+  const dispatch = useDispatch();
+
   const handleChange = (e) => {
-    setQuantity(e.target.value);
+    const payload = { 
+      id: item.id,
+      cartQuantity: parseInt(e.target.value, 10)
+    }
+    setQuantity(e.target.value)
+    dispatch(setItemQuantity(payload));
   };
 
   return (
@@ -19,6 +28,7 @@ const CartSelect = () => {
         onChange={handleChange}
         fullWidth
         label="Qty"
+        defaultValue={quantity}
       >
         <MenuItem value="1">1</MenuItem>
         <MenuItem value="2">2</MenuItem>

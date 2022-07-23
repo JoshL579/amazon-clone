@@ -65,6 +65,7 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
 
   const handleAddToCart = (product) => {
+    product.cartQuantity = quantity;
     dispatch(addToCart(product));
   };
 

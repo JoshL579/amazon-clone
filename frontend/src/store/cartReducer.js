@@ -24,13 +24,9 @@ export const cartReducer = createSlice({
       );
 
       if (itemIndex >= 0) {
-        state.cartItems[itemIndex].cartQuantity += 1;
+        state.cartItems[itemIndex].cartQuantity += action.payload.cartQuantity;
       } else {
-        const tempProduct = {
-          ...action.payload,
-          cartQuantity: 1,
-        };
-        state.cartItems.push(tempProduct);
+        state.cartItems.push(action.payload);
       }
 
       sessionStorage.setItem("cartItems", JSON.stringify(state.cartItems));
@@ -56,6 +52,13 @@ export const cartReducer = createSlice({
       sessionStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
 
+    setItemQuantity: (state, action) => {
+      const itemIndex = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.cartItems[itemIndex].cartQuantity = action.payload.cartQuantity
+    },
+
     calculateTotals: (state) => {
       let quantity = 0;
       let total = 0;
@@ -79,7 +82,7 @@ export const cartReducer = createSlice({
   },
 });
 
-export const { addToCart, calculateTotals, removeFromCart } =
+export const { addToCart, calculateTotals, setItemQuantity, removeFromCart } =
   cartReducer.actions;
 
 // export const selectCart = (state) => state.cart.value;
