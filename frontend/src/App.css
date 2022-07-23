@@ -6,3 +6,15 @@
     color: orange;
     text-decoration: underline;
   }
+
+  .singleBtn:hover {
+    background-color: lightgray !important;
+  }
+
+  .cartBtn:hover {
+    background-color: #febd69 !important;
+  }
+
+  .checkoutBtn:hover {
+    background-color: lightgray !important;
+  }

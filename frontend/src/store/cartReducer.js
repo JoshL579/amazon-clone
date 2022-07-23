@@ -1,28 +1,90 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+const initialState = {
+  cartItems: sessionStorage.getItem("cartItems")
+    ? JSON.parse(sessionStorage.getItem("cartItems"))
+    : [],
+  cartTotalQuantity: sessionStorage.getItem("cartTotalQuantity")
+    ? JSON.parse(sessionStorage.getItem("cartTotalQuantity"))
+    : 0,
+  cartTotalPrice: sessionStorage.getItem("cartTotalPrice")
+    ? JSON.parse(sessionStorage.getItem("cartTotalPrice"))
+    : 0,
+  isLoading: true,
+};
 
 export const cartReducer = createSlice({
-    name: 'cart',
-    initialState: {
-        items: []
+  name: "cart",
+  initialState,
+  reducers: {
+    addToCart: (state, action) => {
+      console.log(action);
+      const itemIndex = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      if (itemIndex >= 0) {
+        state.cartItems[itemIndex].cartQuantity += action.payload.cartQuantity;
+      } else {
+        state.cartItems.push(action.payload);
+      }
+
+      sessionStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
-    reducers: {
-        add: (state, action) => {
-            state.items = [...state, action.payload]
-        },
-        remove: (state, action) => {
-            let newItems = []
-            state.items.forEach(item => {
-                if (item.id !== action.id) {
-                    newItems.push(item)
-                }
-            })
-            state.items = newItems
+
+    // removeFromCart: (state, action) => {
+    //   state.cartItems = state.cartItems.filter(
+    //     (item) => item.id !== action.payload
+    //   );
+    //   sessionStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+    // },
+
+    removeFromCart: (state, action) => {
+      let newItems = [];
+      state.cartItems.forEach((item) => {
+        if (item.id !== action.payload) {
+          console.log(action.payload);
+          newItems.push(item);
         }
-    }
-})
+      });
+      state.cartItems = newItems;
 
-export const { add, remove } = cartReducer.actions
+      sessionStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+    },
 
-export const selectCart = (state) => state.cart.value
+    setItemQuantity: (state, action) => {
+      const itemIndex = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.cartItems[itemIndex].cartQuantity = action.payload.cartQuantity
+    },
 
-export default cartReducer.reducer
+    calculateTotals: (state) => {
+      let quantity = 0;
+      let total = 0;
+      state.cartItems.forEach((item) => {
+        quantity += item.cartQuantity;
+        total += item.cartQuantity * item.price;
+      });
+      state.cartTotalQuantity = quantity;
+      state.cartTotalPrice = total;
+
+      sessionStorage.setItem(
+        "cartTotalQuantity",
+        JSON.stringify(state.cartTotalQuantity)
+      );
+
+      sessionStorage.setItem(
+        "cartTotalPrice",
+        JSON.stringify(state.cartTotalPrice)
+      );
+    },
+  },
+});
+
+export const { addToCart, calculateTotals, setItemQuantity, removeFromCart } =
+  cartReducer.actions;
+
+// export const selectCart = (state) => state.cart.value;
+
+export default cartReducer.reducer;
