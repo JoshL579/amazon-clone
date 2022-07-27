@@ -3,6 +3,8 @@ React Frontend + Muti Backend (Node Express currently. Will add Python & Java ve
 
 ## Demo
 
+- [Live Demo](https://amazon-clone-josh-tony.herokuapp.com/)
+
 - Home Page
 
     ![home-sample](./demo/images/home-sample.png)
