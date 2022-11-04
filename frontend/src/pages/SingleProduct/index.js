@@ -69,7 +69,11 @@ const SingleProduct = () => {
     dispatch(addToCart(product));
   };
 
-  // console.log(quantity);
+  const generateRandomRating = () => {
+    return Math.floor(Math.random() * 3000);
+  };
+
+  // console.log(product);
 
   useEffect(() => {
     // 1. check cookie "HISTORY" exist
@@ -89,7 +93,6 @@ const SingleProduct = () => {
       });
   }, []);
 
-
   if (loading) return <></>;
 
   return (
@@ -103,7 +106,7 @@ const SingleProduct = () => {
         sx={styles.container}
         direction="row"
       >
-        <Grid item xs={3}>
+        <Grid item xs={3} sx={{ maxWidth: "300px" }}>
           <SingleModal
             openModal={handleOpen}
             closeModal={handleClose}
@@ -118,6 +121,7 @@ const SingleProduct = () => {
                 objectFit: "contain",
                 minWidth: 300,
                 maxHeight: 380,
+                minHeight: 380,
               }}
             ></img>
           </Button>
@@ -132,7 +136,7 @@ const SingleProduct = () => {
               precision={0.5}
               size="medium"
             />
-            <Typography>260 Ratings</Typography>
+            <Typography>{generateRandomRating()} Ratings</Typography>
           </Grid>
           <Divider sx={styles.divider} />
           <Grid>
@@ -167,7 +171,7 @@ const SingleProduct = () => {
         >
           <Grid display="flex" flexDirection="column" gap={1}>
             <Typography fontWeight={700} variant="h5">
-              $29.99
+              ${product.price}
             </Typography>
             <Typography>Delivery Tuesday, July 26</Typography>
             <Typography>Deliver to Canada</Typography>
