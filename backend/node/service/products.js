@@ -6,7 +6,7 @@ const historyDbHandler = require("../mapper/history");
 const homeProducts = async (req, res, next) => {
   const userId = req.cookies.uid;
   const allCategories = await categoryDbHandler.findAllCategories();
-
+  console.log(allCategories);
   // empty categories
   if (!allCategories) return res.json({ status: 404 });
 
@@ -16,14 +16,15 @@ const homeProducts = async (req, res, next) => {
   });
 
   const dbProducts = await productDbHandler.findProductsByCategory(10);
-  let products = {}
+  let products = {};
   dbProducts.forEach((category) => {
-    if (category.Products.length === 0) return
-    products[category.Products[0].categoryId] = category.Products
-  })
+    if (category.Products.length === 0) return;
+    products[category.Products[0].categoryId] = category.Products;
+  });
 
   const images = await imageDbHandler.findAllHomeImages();
-  let heros = [], cards = [];
+  let heros = [],
+    cards = [];
   images.forEach((image) => {
     if (image.subType === "hero") {
       heros.push(image);
@@ -33,15 +34,15 @@ const homeProducts = async (req, res, next) => {
     }
   });
 
-  let historyProducts
+  let historyProducts;
   if (userId) {
-    const histories = await historyDbHandler.findHistoryById(userId)
-    let pids = []
+    const histories = await historyDbHandler.findHistoryById(userId);
+    let pids = [];
     histories.forEach((history, i) => {
-      if (i > 9) return
-      pids.push(history.productId)
-    })
-    historyProducts = await productDbHandler.findProductsByIds(pids)
+      if (i > 9) return;
+      pids.push(history.productId);
+    });
+    historyProducts = await productDbHandler.findProductsByIds(pids);
   }
 
   return res.json({
@@ -49,20 +50,23 @@ const homeProducts = async (req, res, next) => {
     categories: categories,
     heros: heros,
     cards: cards,
-    history: historyProducts ?? []
+    history: historyProducts ?? [],
   });
 };
 
 const singleProduct = async (req, res, next) => {
   const productId = req.params.id;
   const userId = req.cookies.uid;
-  console.log('uid', userId)
+  console.log("uid", userId);
   const product = await productDbHandler.findProductById(productId);
 
   // create a history in table history
   // check if history exist
-  const isExist = await historyDbHandler.findHistoryByUidAndPid(userId, productId)
-  if (!isExist) await historyDbHandler.createHistory(userId, productId)
+  const isExist = await historyDbHandler.findHistoryByUidAndPid(
+    userId,
+    productId
+  );
+  if (!isExist) await historyDbHandler.createHistory(userId, productId);
 
   return res.json({
     product: product,
