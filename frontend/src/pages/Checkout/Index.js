@@ -221,8 +221,7 @@ const Checkout = () => {
               Payment total
             </Typography>
             <Typography variant="h6" color={theme.palette.orange.main}>
-              {total}
-              {/* USD {total.substring(0, total.length - 1)} */}
+              {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Typography>
           </Grid>
         </Grid>

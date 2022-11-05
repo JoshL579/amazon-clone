@@ -7,7 +7,7 @@ import {
   Divider,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { theme } from "../../theme/theme";
 import { getProductDetail } from "../../api/endpoints/detail";
 import SingleSideBar from "./components/SingleSideBar";
@@ -222,9 +222,11 @@ const SingleProduct = () => {
             >
               Add to Cart
             </Button>
-            <Button sx={styles.btn.buy} variant="outlined">
-              Buy now
-            </Button>
+            <Link to="/checkout">
+              <Button sx={styles.btn.buy} variant="outlined">
+                Buy now
+              </Button>
+            </Link>
             <Typography>Ship from Amazon</Typography>
             <Typography>Sold by Lucky Product</Typography>
             <Divider />

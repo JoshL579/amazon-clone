@@ -73,10 +73,12 @@ const SignIn = (props) => {
 
     login({ email: email, password: password })
       .then((res) => {
+        console.log(res);
         if (res.success) {
           navigate("/");
+        } else {
+          alert("something wrong");
         }
-        alert("something wrong");
 
         // redirect
       })
@@ -253,6 +255,7 @@ const SignIn = (props) => {
 
           <TextField
             fullWidth
+            type="password"
             required
             size="small"
             placeholder="At least 6 characters"
@@ -270,17 +273,13 @@ const SignIn = (props) => {
               alignItems: "center",
               marginBottom: 2,
             }}
-          >
-            {/* <PriorityHighIcon color="blue" fontSize="10px" />
-            <Typography variant="body2">
-              Passwords must be at least 6 characters.
-            </Typography> */}
-          </Box>
+          ></Box>
           <Typography variant="h7" sx={{ fontWeight: 700 }}>
             Re-enter password
           </Typography>
           <TextField
             fullWidth
+            type="password"
             required
             sx={{ marginBottom: 2 }}
             size="small"
