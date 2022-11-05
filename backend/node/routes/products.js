@@ -11,4 +11,8 @@ router.get("/:id", async (req, res, next) => {
   return productService.singleProduct(req, res, next);
 });
 
+router.get("/allproducts", async (req, res, next) => {
+  return productService.getAllProducts(req, res, next);
+});
+
 module.exports = router;

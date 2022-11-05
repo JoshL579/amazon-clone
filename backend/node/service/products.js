@@ -73,9 +73,21 @@ const singleProduct = async (req, res, next) => {
   });
 };
 
+const getAllProducts = async (req, res, next) => {
+  const dbProducts = await productDbHandler.findProductsByName();
+  let products = dbProducts;
+
+  console.log(products);
+
+  return res.json({
+    products: products,
+  });
+};
+
 const productService = {
   homeProducts: homeProducts,
   singleProduct: singleProduct,
+  getAllProducts: getAllProducts,
 };
 
 module.exports = productService;
