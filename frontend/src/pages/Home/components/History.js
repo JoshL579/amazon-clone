@@ -13,13 +13,13 @@ const styles = {
   history: {
     padding: 2,
     border: "1px solid lightgrey",
-    width: "100%"
+    width: "100%",
   },
 };
 
 export default function History(props) {
   const { images } = props;
-  if (images.length === 0) return <></>
+  if (images.length === 0) return <></>;
   return (
     <Paper sx={styles.history}>
       <Typography variant="h6" fontWeight={700}>
@@ -34,18 +34,31 @@ export default function History(props) {
         pagination={false}
         modules={[Navigation, Pagination]}
         navigation={true}
-        style={{ height: 'fit-content' }}
+        style={{ height: "fit-content" }}
       >
-        {images.reverse().map((image, i) =>
+        {images.reverse().map((image, i) => (
           <SwiperSlide key={`history-${image.id}`}>
-            <div style={{ textAlign: 'center' }}>
-              <img src={`/images/${image.thumbnail}`} style={{ width: 100 }}></img>
+            <div
+              style={{
+                textAlign: "center",
+                maxWidth: "100px",
+                maxHeight: "150px",
+              }}
+            >
+              <img
+                src={`/images/${image.thumbnail}`}
+                style={{
+                  width: "100px",
+                  height: "150px",
+                  objectFit: "contain",
+                }}
+              ></img>
             </div>
-            <Typography>{
-              image.title.length > 80
+            <Typography>
+              {image.title.length > 80
                 ? image.title.slice(0, 80) + `...`
-                : image.title
-            }</Typography>
+                : image.title}
+            </Typography>
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Rating
                 name="read-only"
@@ -65,7 +78,7 @@ export default function History(props) {
                 ${shipping} shipping
               </Typography> */}
           </SwiperSlide>
-        )}
+        ))}
       </Swiper>
     </Paper>
   );

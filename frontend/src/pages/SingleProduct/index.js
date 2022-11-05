@@ -73,8 +73,6 @@ const SingleProduct = () => {
     return Math.floor(Math.random() * 3000);
   };
 
-  // console.log(product);
-
   useEffect(() => {
     // 1. check cookie "HISTORY" exist
     // 1.1 if not exist, add new cookie: {HISOTRY: []}
@@ -94,6 +92,10 @@ const SingleProduct = () => {
   }, []);
 
   if (loading) return <></>;
+
+  if (!product.spacification) {
+    return <></>;
+  }
 
   return (
     <>
@@ -145,20 +147,22 @@ const SingleProduct = () => {
             </Typography>
             <Grid display="flex" gap={6}>
               <Typography variant="h6">Brand</Typography>
-              <Typography>Odaban</Typography>
+              <Typography>{JSON.parse(product.spacification).Brand}</Typography>
             </Grid>
             <Grid display="flex" gap={6}>
               <Typography variant="h6">Color</Typography>
-              <Typography>Pink</Typography>
+              <Typography>{JSON.parse(product.spacification).Color}</Typography>
             </Grid>
             <Grid display="flex" gap={6}>
-              <Typography variant="h6">Noise Control</Typography>
-              <Typography>Sound isolation</Typography>
+              <Typography variant="h6">Material</Typography>
+              <Typography>
+                {JSON.parse(product.spacification).Material}
+              </Typography>
             </Grid>
-            <Grid display="flex" gap={6}>
+            {/* <Grid display="flex" gap={6}>
               <Typography variant="h6">Connectivity</Typography>
               <Typography sx={{ mb: 2 }}>Wired</Typography>
-            </Grid>
+            </Grid> */}
           </Grid>
           <Divider sx={styles.divider} />
           <Typography variant="h6">About this item</Typography>
