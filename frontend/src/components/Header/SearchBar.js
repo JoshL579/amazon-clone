@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   Grid,
   TextField,
@@ -6,59 +6,59 @@ import {
   Menu,
   MenuItem,
   IconButton,
-} from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search'
-import { theme } from '../../theme/theme'
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import { theme } from "../../theme/theme";
 
 const styles = {
   root: {
-    width: '100%',
-    alignSelf: 'center',
+    width: "100%",
+    alignSelf: "center",
   },
   input: {
-    backgroundColor: '#fff',
-    width: 'calc(100% - 120px)',
-    '& > div': {
-      width: '100%',
-      '&:hover': {
-        border: 'none'
+    backgroundColor: "#fff",
+    width: "calc(100% - 120px)",
+    "& > div": {
+      width: "100%",
+      "&:hover": {
+        border: "none",
       },
-      '& > div': {
+      "& > div": {
         borderRadius: 0,
       },
     },
   },
   dropdownBtn: {
     width: 52,
-    '& button': {
-      borderRadius: '4px 0 0 4px',
-      height: '100%',
+    "& button": {
+      borderRadius: "4px 0 0 4px",
+      height: "100%",
       padding: 0,
-      minWidth: '52px',
-      color: '#555',
-      textTransform: 'none',
+      minWidth: "52px",
+      color: "#555",
+      textTransform: "none",
       fontWeight: 300,
     },
   },
   search: {
     backgroundColor: theme.palette.secondary.main,
-    borderRadius: '0 4px 4px 0',
+    borderRadius: "0 4px 4px 0",
     width: 45,
-    '& button': {
+    "& button": {
       borderRadius: 0,
     },
   },
-}
+};
 
 export const SearchBar = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null)
-  const open = Boolean(anchorEl)
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
   return (
     <Grid
       item
@@ -73,9 +73,9 @@ export const SearchBar = () => {
         <Button
           variant="contained"
           color="grey"
-          aria-controls={open ? 'basic-menu' : undefined}
+          aria-controls={open ? "basic-menu" : undefined}
           aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
+          aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
         >
           All
@@ -85,7 +85,7 @@ export const SearchBar = () => {
           open={open}
           onClose={handleClose}
           MenuListProps={{
-            'aria-labelledby': 'basic-button',
+            "aria-labelledby": "basic-button",
           }}
         >
           <MenuItem>All Departments</MenuItem>
@@ -102,5 +102,5 @@ export const SearchBar = () => {
         </IconButton>
       </Grid>
     </Grid>
-  )
-}
+  );
+};

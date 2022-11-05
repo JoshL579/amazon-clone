@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { theme } from "../../theme/theme";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { Link } from "react-router-dom";
 
 const sidebarData = [
   {
@@ -79,12 +80,14 @@ const Sidebar = ({ isDrawerOpen, setIsDrawerOpen }) => {
         role="presentation"
         sx={{ backgroundColor: theme.palette.primary.light }}
       >
-        <Box sx={styles.flex}>
-          <Avatar sx={styles.avatar} />
-          <Typography fontWeight={700} color="white" variant="h6">
-            Hello, Sign in
-          </Typography>
-        </Box>
+        <Link to="/signin">
+          <Box sx={styles.flex}>
+            <Avatar sx={styles.avatar} />
+            <Typography fontWeight={700} color="white" variant="h6">
+              Hello, Sign in
+            </Typography>
+          </Box>
+        </Link>
       </Box>
       <List>
         {sidebarData.map((list, index) => {
