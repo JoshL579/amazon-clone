@@ -48,6 +48,10 @@ const styles = {
       p: 0,
       height: "2.5rem",
     },
+    catelimit: {
+      width: "200px",
+      justifyContent: "space-between",
+    },
   },
 };
 
@@ -138,26 +142,48 @@ const SingleProduct = () => {
               precision={0.5}
               size="medium"
             />
-            <Typography>{generateRandomRating()} Ratings</Typography>
+            <Typography>{product.ratingNum} Ratings</Typography>
           </Grid>
           <Divider sx={styles.divider} />
           <Grid>
             <Typography sx={{ mb: 2 }} variant="h5" fontWeight={700}>
-              ${product.price}
+              ${product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Typography>
-            <Grid display="flex" gap={6}>
+            <Grid
+              display="flex"
+              justifyContent="space-between"
+              sx={{ width: "200px" }}
+            >
               <Typography variant="h6">Brand</Typography>
-              <Typography>{JSON.parse(product.spacification).Brand}</Typography>
+              <Grid sx={{ width: "100px" }}>
+                <Typography>
+                  {JSON.parse(product.spacification).Brand}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid display="flex" gap={6}>
+            <Grid
+              display="flex"
+              justifyContent="space-between"
+              sx={{ width: "200px" }}
+            >
               <Typography variant="h6">Color</Typography>
-              <Typography>{JSON.parse(product.spacification).Color}</Typography>
+              <Grid sx={{ width: "100px" }}>
+                <Typography>
+                  {JSON.parse(product.spacification).Color}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid display="flex" gap={6}>
+            <Grid
+              display="flex"
+              justifyContent="space-between"
+              sx={{ width: "200px" }}
+            >
               <Typography variant="h6">Material</Typography>
-              <Typography>
-                {JSON.parse(product.spacification).Material}
-              </Typography>
+              <Grid sx={{ width: "100px" }}>
+                <Typography>
+                  {JSON.parse(product.spacification).Material}
+                </Typography>
+              </Grid>
             </Grid>
             {/* <Grid display="flex" gap={6}>
               <Typography variant="h6">Connectivity</Typography>
@@ -175,7 +201,7 @@ const SingleProduct = () => {
         >
           <Grid display="flex" flexDirection="column" gap={1}>
             <Typography fontWeight={700} variant="h5">
-              ${product.price}
+              ${product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Typography>
             <Typography>Delivery Tuesday, July 26</Typography>
             <Typography>Deliver to Canada</Typography>

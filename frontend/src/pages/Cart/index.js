@@ -105,7 +105,10 @@ export default function Cart() {
               </Grid>
               <Grid>
                 <Typography variant="h6">
-                  {(item.price * item.cartQuantity).toFixed(2)}
+                  {(item.price * item.cartQuantity)
+                    .toFixed(2)
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 </Typography>
               </Grid>
             </Grid>
@@ -113,7 +116,8 @@ export default function Cart() {
         })}
         <Grid>
           <Typography variant="h6" sx={styles.border} textAlign="end">
-            Subtotal ({cartTotalQuantity} item): ${cartTotalPrice.toFixed(2)}
+            Subtotal ({cartTotalQuantity} item): $
+            {cartTotalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </Typography>
         </Grid>
       </Grid>
@@ -134,7 +138,7 @@ export default function Cart() {
         <Grid>
           <Typography variant="h6">
             Subtotal ({cartTotalQuantity} item):
-            {` $${cartTotalPrice.toFixed(2)}`}
+            {` $${cartTotalPrice.toLocaleString()}`}
           </Typography>
           <Grid display="flex" alignItems="center">
             <Checkbox sx={{ p: 0 }} />

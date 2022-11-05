@@ -28,9 +28,7 @@ const Checkout = () => {
     (store) => store.cart
   );
 
-  const [total, setTotal] = useState((cartTotalPrice * 1.12).toFixed(2));
-
-  console.log(cartItems);
+  const [total, setTotal] = useState((cartTotalPrice * 1.12).toLocaleString());
 
   return (
     <Grid container sx={{ pl: 10, pr: 10, mt: 5 }}>
@@ -114,7 +112,11 @@ const Checkout = () => {
                   <Grid item xs={5}>
                     <Typography variant="h6">{item.title}</Typography>
                     <Typography variant="h6" color={theme.palette.orange.main}>
-                      ${item.price}
+                      $
+                      {item.price
+                        .toFixed(2)
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     </Typography>
                     <Typography variant="h6" sx={{ mb: 1 }}>
                       Quantity: {item.cartQuantity}
@@ -183,7 +185,9 @@ const Checkout = () => {
           <Typography variant="h6">Order Summary</Typography>
           <Grid sx={styles.flex}>
             <Typography variant="body2">Items:</Typography>
-            <Typography variant="body2">{cartTotalPrice.toFixed(2)}</Typography>
+            <Typography variant="body2">
+              {cartTotalPrice.toLocaleString()}
+            </Typography>
           </Grid>
           <Grid sx={styles.flex}>
             <Typography variant="body2">Shipping & handling:</Typography>
@@ -192,27 +196,33 @@ const Checkout = () => {
           <Divider />
           <Grid sx={styles.flex}>
             <Typography variant="body2">Total before tax:</Typography>
-            <Typography variant="body2">{cartTotalPrice.toFixed(2)}</Typography>
+            <Typography variant="body2">
+              {cartTotalPrice.toLocaleString()}
+            </Typography>
           </Grid>
           <Grid sx={styles.flex}>
             <Typography variant="body2">
               Estimated tax to be collected
             </Typography>
             <Typography variant="body2">
-              {(cartTotalPrice * 0.12).toFixed(2)}
+              {(cartTotalPrice * 0.12).toFixed(2).toLocaleString()}
             </Typography>
           </Grid>
           <Divider sx={{ mb: 2 }} />
           <Grid sx={[styles.flex, { mb: 1 }]}>
             <Typography variant="bodu1">Order total</Typography>
-            <Typography variant="body1">{total}</Typography>
+            <Typography variant="body1">
+              {total}
+              {/* {total.substring(0, total.length - 1)} */}
+            </Typography>
           </Grid>
           <Grid sx={styles.flex}>
             <Typography variant="h6" color={theme.palette.orange.main}>
               Payment total
             </Typography>
             <Typography variant="h6" color={theme.palette.orange.main}>
-              USD {total}
+              {total}
+              {/* USD {total.substring(0, total.length - 1)} */}
             </Typography>
           </Grid>
         </Grid>

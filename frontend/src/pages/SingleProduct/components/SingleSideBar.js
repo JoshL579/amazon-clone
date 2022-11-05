@@ -56,7 +56,7 @@ const SingleSideBar = ({ drawer, setDrawer }) => {
                 Cart subtotal({cartTotalQuantity} items):
               </Typography>
               <Typography fontWeight={700} color={theme.palette.orange.main}>
-                $ {cartTotalPrice.toFixed(2)}
+                $ {cartTotalPrice.toLocaleString()}
               </Typography>
             </Grid>
             <Grid item display="flex" gap={2}>
