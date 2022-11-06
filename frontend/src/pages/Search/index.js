@@ -29,8 +29,8 @@ const Search = () => {
       <Grid container sx={styles.container}>
         <SearchLeftBar />
         <SearchRightBar />
-        <BtnGroup />
-        <History />
+        {/* <BtnGroup /> */}
+        {/* <History /> */}
         <SignInBtn />
         <BackToTop />
       </Grid>
