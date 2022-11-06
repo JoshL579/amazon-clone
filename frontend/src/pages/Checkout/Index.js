@@ -103,9 +103,17 @@ const Checkout = () => {
                   ]}
                   key={item.id}
                 >
-                  <Grid item xs={1}>
+                  <Grid
+                    item
+                    xs={1}
+                    sx={{ maxWidth: "60px", maxHeight: "90px" }}
+                  >
                     <img
-                      style={{ width: 70 }}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                      }}
                       src={`/images/${item.thumbnail}`}
                     ></img>
                   </Grid>

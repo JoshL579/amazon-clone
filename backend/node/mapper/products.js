@@ -44,8 +44,16 @@ const findProductsByIds = (ids) => {
   });
 };
 
-const findProductsByName = () => {
-  return prisma.products.findMany();
+const findProductsByName = (keywords) => {
+  console.log(keywords);
+  return prisma.products.findMany({
+    where: {
+      title: {
+        contains: keywords,
+        mode: "insensitive",
+      },
+    },
+  });
 };
 
 const productDbHandler = {

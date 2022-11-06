@@ -74,10 +74,12 @@ const singleProduct = async (req, res, next) => {
 };
 
 const getAllProducts = async (req, res, next) => {
-  const dbProducts = await productDbHandler.findProductsByName();
+  const keywords = req.query.keywords;
+  console.log(keywords)
+  const dbProducts = await productDbHandler.findProductsByName(keywords);
   let products = dbProducts;
 
-  console.log(products);
+  // console.log(products);
 
   return res.json({
     products: products,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Grid,
   TextField,
@@ -6,6 +6,8 @@ import {
   Menu,
   MenuItem,
   IconButton,
+  Paper,
+  Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { theme } from "../../theme/theme";
@@ -52,6 +54,8 @@ const styles = {
 
 export const SearchBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -59,6 +63,11 @@ export const SearchBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleKeywordOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <Grid
       item
@@ -93,13 +102,32 @@ export const SearchBar = () => {
           <MenuItem>Books</MenuItem>
         </Menu>
       </Grid>
-      <Grid item sx={styles.input}>
+      <Grid item sx={styles.input} onClick={handleKeywordOpen}>
         <TextField variant="outlined" size="small" />
       </Grid>
       <Grid item sx={styles.search}>
         <IconButton color="primary">
           <SearchIcon />
         </IconButton>
+      </Grid>
+      <Grid
+        sx={{
+          position: "absolute",
+          bottom: "-25px",
+          left: "293px",
+          width: "calc(100% - 700px)",
+        }}
+        className={isOpen ? "" : "search__keyword"}
+      >
+        <Paper
+          sx={{ width: "100%", pt: "0.3rem", pb: "0.3rem", borderRadius: 0 }}
+        >
+          <Grid>
+            <Typography sx={{ textAlign: "left", pl: "0.2rem" }}>
+              Toy
+            </Typography>
+          </Grid>
+        </Paper>
       </Grid>
     </Grid>
   );
