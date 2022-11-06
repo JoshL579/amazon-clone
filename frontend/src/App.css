@@ -1,20 +1,26 @@
 .global-link {
-    color: #007185;
+  color: #007185;
 }
 
 .global-link:hover {
-    color: orange;
-    text-decoration: underline;
-  }
+  color: orange;
+  text-decoration: underline;
+}
 
-  .singleBtn:hover {
-    background-color: lightgray !important;
-  }
+.singleBtn:hover {
+  background-color: lightgray !important;
+}
 
-  .cartBtn:hover {
-    background-color: #febd69 !important;
-  }
+.cartBtn:hover {
+  background-color: #febd69 !important;
+}
 
-  .checkoutBtn:hover {
-    background-color: lightgray !important;
-  }
+.checkoutBtn:hover {
+  background-color: lightgray !important;
+}
+
+/* to control the search drop down open and close */
+
+.search__keyword {
+  display: none;
+}
