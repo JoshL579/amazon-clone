@@ -7,7 +7,7 @@ import {
   Divider,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { theme } from "../../theme/theme";
 import { getProductDetail } from "../../api/endpoints/detail";
 import SingleSideBar from "./components/SingleSideBar";
@@ -48,6 +48,10 @@ const styles = {
       p: 0,
       height: "2.5rem",
     },
+    catelimit: {
+      width: "200px",
+      justifyContent: "space-between",
+    },
   },
 };
 
@@ -69,7 +73,9 @@ const SingleProduct = () => {
     dispatch(addToCart(product));
   };
 
-  // console.log(quantity);
+  const generateRandomRating = () => {
+    return Math.floor(Math.random() * 3000);
+  };
 
   useEffect(() => {
     // 1. check cookie "HISTORY" exist
@@ -89,8 +95,11 @@ const SingleProduct = () => {
       });
   }, []);
 
-
   if (loading) return <></>;
+
+  if (!product.spacification) {
+    return <></>;
+  }
 
   return (
     <>
@@ -103,7 +112,7 @@ const SingleProduct = () => {
         sx={styles.container}
         direction="row"
       >
-        <Grid item xs={3}>
+        <Grid item xs={3} sx={{ maxWidth: "300px" }}>
           <SingleModal
             openModal={handleOpen}
             closeModal={handleClose}
@@ -118,6 +127,7 @@ const SingleProduct = () => {
                 objectFit: "contain",
                 minWidth: 300,
                 maxHeight: 380,
+                minHeight: 380,
               }}
             ></img>
           </Button>
@@ -132,29 +142,53 @@ const SingleProduct = () => {
               precision={0.5}
               size="medium"
             />
-            <Typography>260 Ratings</Typography>
+            <Typography>{product.ratingNum} Ratings</Typography>
           </Grid>
           <Divider sx={styles.divider} />
           <Grid>
             <Typography sx={{ mb: 2 }} variant="h5" fontWeight={700}>
-              ${product.price}
+              ${product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Typography>
-            <Grid display="flex" gap={6}>
+            <Grid
+              display="flex"
+              justifyContent="space-between"
+              sx={{ width: "200px" }}
+            >
               <Typography variant="h6">Brand</Typography>
-              <Typography>Odaban</Typography>
+              <Grid sx={{ width: "100px" }}>
+                <Typography>
+                  {JSON.parse(product.spacification).Brand}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid display="flex" gap={6}>
+            <Grid
+              display="flex"
+              justifyContent="space-between"
+              sx={{ width: "200px" }}
+            >
               <Typography variant="h6">Color</Typography>
-              <Typography>Pink</Typography>
+              <Grid sx={{ width: "100px" }}>
+                <Typography>
+                  {JSON.parse(product.spacification).Color}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid display="flex" gap={6}>
-              <Typography variant="h6">Noise Control</Typography>
-              <Typography>Sound isolation</Typography>
+            <Grid
+              display="flex"
+              justifyContent="space-between"
+              sx={{ width: "200px" }}
+            >
+              <Typography variant="h6">Material</Typography>
+              <Grid sx={{ width: "100px" }}>
+                <Typography>
+                  {JSON.parse(product.spacification).Material}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid display="flex" gap={6}>
+            {/* <Grid display="flex" gap={6}>
               <Typography variant="h6">Connectivity</Typography>
               <Typography sx={{ mb: 2 }}>Wired</Typography>
-            </Grid>
+            </Grid> */}
           </Grid>
           <Divider sx={styles.divider} />
           <Typography variant="h6">About this item</Typography>
@@ -167,7 +201,7 @@ const SingleProduct = () => {
         >
           <Grid display="flex" flexDirection="column" gap={1}>
             <Typography fontWeight={700} variant="h5">
-              $29.99
+              ${product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Typography>
             <Typography>Delivery Tuesday, July 26</Typography>
             <Typography>Deliver to Canada</Typography>
@@ -188,9 +222,11 @@ const SingleProduct = () => {
             >
               Add to Cart
             </Button>
-            <Button sx={styles.btn.buy} variant="outlined">
-              Buy now
-            </Button>
+            <Link to="/checkout">
+              <Button sx={styles.btn.buy} variant="outlined">
+                Buy now
+              </Button>
+            </Link>
             <Typography>Ship from Amazon</Typography>
             <Typography>Sold by Lucky Product</Typography>
             <Divider />

@@ -7,9 +7,9 @@ const findProductsByCategory = (limit) => {
     .findMany({
       select: {
         Products: {
-          take: limit
-        }
-      }
+          take: limit,
+        },
+      },
     })
     .then((products) => {
       return products;
@@ -23,7 +23,7 @@ const findProductById = (id) => {
   return prisma.products
     .findUnique({
       where: {
-        id: parseInt(id)
+        id: parseInt(id),
       },
     })
     .then((product) => {
@@ -35,20 +35,24 @@ const findProductById = (id) => {
 };
 
 const findProductsByIds = (ids) => {
-  return prisma.products
-    .findMany({
-      where: {
-        id: {
-          in: ids
-        }
-      }
-    })
-}
+  return prisma.products.findMany({
+    where: {
+      id: {
+        in: ids,
+      },
+    },
+  });
+};
+
+const findProductsByName = () => {
+  return prisma.products.findMany();
+};
 
 const productDbHandler = {
   findProductsByCategory: findProductsByCategory,
   findProductById: findProductById,
-  findProductsByIds: findProductsByIds
+  findProductsByIds: findProductsByIds,
+  findProductsByName: findProductsByName,
 };
 
 module.exports = productDbHandler;

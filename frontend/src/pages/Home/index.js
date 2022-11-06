@@ -36,6 +36,7 @@ const styles = {
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState({});
+
   useEffect(() => {
     getImages(2)
       .then((res) => {

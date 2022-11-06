@@ -1,8 +1,9 @@
 import React from "react";
-import { Grid, Typography, Divider, Link, Box, Button } from "@mui/material";
+import { Grid, Typography, Divider, Box, Button } from "@mui/material";
 import { HeaderPopover } from "../../modules/HeaderButton";
 import { theme } from "../../theme/theme";
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const styles = {
   root: {
@@ -43,7 +44,7 @@ const AccountDropdownMenu = () => {
   return (
     <Grid container direction="column" sx={styles.root}>
       <Grid item p={1.75} align="center">
-        <NavLink to="/signin">
+        <Link to="/signin">
           <Button
             variant="contained"
             color="secondary"
@@ -52,11 +53,11 @@ const AccountDropdownMenu = () => {
           >
             Sign in
           </Button>
-        </NavLink>
+        </Link>
 
-        <NavLink to="/signup">
+        <Link to="/signup">
           <Typography sx={styles.signinDescription}>New customer?</Typography>
-        </NavLink>
+        </Link>
       </Grid>
       <Grid item px={1.75}>
         <Divider />

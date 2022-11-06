@@ -31,6 +31,7 @@ model Products {
   briefly       String?   @default("")
   price         Float     @default(10.00)
   rating        Float     @default(5)
+  ratingNum     Int       @default(999)
   categoryId    Int?
   category      Category? @relation(fields: [categoryId], references: [id])
   publisher     User?     @relation(fields: [publisherId], references: [id])
