@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "./static/css/main.b3975365.css",
+    "main.js": "./static/js/main.d7243d5c.js",
+    "static/media/Amazon-Ember.ttf": "./static/media/Amazon-Ember.4c5f8783fc6015d993cd.ttf",
+    "static/media/amazon_music.jpg": "./static/media/amazon_music.12185a592dcfa87e776b.jpg",
+    "static/media/amazon-logo.png": "./static/media/amazon-logo.daa9e4c82f80e2a3246c.png",
+    "static/media/logo.png": "./static/media/logo.7ce4d67e154bd34cdc72.png",
+    "static/media/svg": "./static/media/3767696321552037059.7296553eb95a82673544b0115d155d23.svg",
+    "index.html": "./index.html",
+    "main.b3975365.css.map": "./static/css/main.b3975365.css.map",
+    "main.d7243d5c.js.map": "./static/js/main.d7243d5c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b3975365.css",
+    "static/js/main.d7243d5c.js"
+  ]
+}
