@@ -22,19 +22,26 @@ const SearchLeftBar = () => {
       spacing={2}
     >
       <Grid item>
-        <Typography variant="subtitle1">Customer Reviews</Typography>
+        <Typography variant="subtitle1" fontWeight="bold">
+          Customer Reviews
+        </Typography>
         <Grid item display="flex" flexDirection="column">
           {ratings.map((rating, index) => {
             return (
               <Grid item display="flex" key={index}>
-                <Rating name="read-only" value={rating.value} readOnly />
-                <Typography> & up</Typography>
+                <Rating
+                  size="medium"
+                  name="read-only"
+                  value={rating.value}
+                  readOnly
+                />
+                <Typography variant="body2"> & up</Typography>
               </Grid>
             );
           })}
         </Grid>
       </Grid>
-      <Grid item>
+      {/* <Grid item>
         <Typography variant="subtitle1">Brand</Typography>
         <FormGroup>
           {brands.map((brand, index) => {
@@ -47,13 +54,19 @@ const SearchLeftBar = () => {
             );
           })}
         </FormGroup>
-      </Grid>
+      </Grid> */}
       <Grid item>
-        <Typography variant="subtitle1">Price</Typography>
+        <Typography variant="subtitle1" fontWeight="bold">
+          Price
+        </Typography>
         {prices.map((price, index) => {
-          return <Typography key={index}>{price.price}</Typography>;
+          return (
+            <Typography variant="body2" key={index}>
+              {price.price}
+            </Typography>
+          );
         })}
-        <Grid item display="flex" alignItems="center">
+        {/* <Grid item display="flex" alignItems="center">
           <TextField
             InputProps={{
               startAdornment: (
@@ -75,7 +88,7 @@ const SearchLeftBar = () => {
           <Button variant="outlined" sx={{ padding: 0 }}>
             Go
           </Button>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Grid>
   );
@@ -100,24 +113,24 @@ const ratings = [
   },
 ];
 
-const brands = [
-  {
-    id: 1,
-    brand: "Acer",
-  },
-  {
-    id: 2,
-    brand: "LG",
-  },
-  {
-    id: 3,
-    brand: "SAMSUNG",
-  },
-  {
-    id: 4,
-    brand: "ASUS",
-  },
-];
+// const brands = [
+//   {
+//     id: 1,
+//     brand: "Acer",
+//   },
+//   {
+//     id: 2,
+//     brand: "LG",
+//   },
+//   {
+//     id: 3,
+//     brand: "SAMSUNG",
+//   },
+//   {
+//     id: 4,
+//     brand: "ASUS",
+//   },
+// ];
 
 const prices = [
   {

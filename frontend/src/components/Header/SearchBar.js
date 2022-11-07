@@ -11,6 +11,11 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { theme } from "../../theme/theme";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { apiGetSearchResult } from "../../api/endpoints/search";
+import { useDispatch } from "react-redux";
+import { fetchSearchResult } from "../../store/keywordReducer";
 
 const styles = {
   root: {
@@ -55,6 +60,10 @@ const styles = {
 export const SearchBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [keywordInput, setKeywordInput] = useState("");
+  const dispatch = useDispatch()
+
+  const navigate = useNavigate();
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -66,6 +75,18 @@ export const SearchBar = () => {
 
   const handleKeywordOpen = () => {
     setIsOpen(!isOpen);
+  };
+
+  const keywordOnChange = (e) => {
+    setKeywordInput(e.target.value);
+  };
+
+  const handleOnSearch = () => {
+    if (!keywordInput) {
+      return;
+    }
+    navigate(`/search?keywords=${keywordInput}`);
+    dispatch(fetchSearchResult(keywordInput));
   };
 
   return (
@@ -103,9 +124,14 @@ export const SearchBar = () => {
         </Menu>
       </Grid>
       <Grid item sx={styles.input} onClick={handleKeywordOpen}>
-        <TextField variant="outlined" size="small" />
+        <TextField
+          variant="outlined"
+          size="small"
+          onChange={keywordOnChange}
+          value={keywordInput}
+        />
       </Grid>
-      <Grid item sx={styles.search}>
+      <Grid item sx={styles.search} onClick={handleOnSearch}>
         <IconButton color="primary">
           <SearchIcon />
         </IconButton>
@@ -113,18 +139,25 @@ export const SearchBar = () => {
       <Grid
         sx={{
           position: "absolute",
-          bottom: "-25px",
+          bottom: "-72px",
           left: "293px",
           width: "calc(100% - 700px)",
+          zIndex: "999",
         }}
-        className={isOpen ? "" : "search__keyword"}
+        className={isOpen ? "" : "search__keyword__container"}
       >
         <Paper
           sx={{ width: "100%", pt: "0.3rem", pb: "0.3rem", borderRadius: 0 }}
         >
-          <Grid>
+          <Grid className="search__keyword">
             <Typography sx={{ textAlign: "left", pl: "0.2rem" }}>
-              Toy
+              toy
+            </Typography>
+            <Typography sx={{ textAlign: "left", pl: "0.2rem" }}>
+              computer
+            </Typography>
+            <Typography sx={{ textAlign: "left", pl: "0.2rem" }}>
+              book
             </Typography>
           </Grid>
         </Paper>
