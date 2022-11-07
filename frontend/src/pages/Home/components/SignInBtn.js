@@ -10,10 +10,11 @@ const styles = {
     justifyContent: "center",
     padding: 3,
     borderBottom: "1px solid lightgrey",
-    marginBottom: 2
+    marginBottom: 2,
   },
   nolink: {
     textDecoration: "none",
+    color: "blue",
   },
 };
 

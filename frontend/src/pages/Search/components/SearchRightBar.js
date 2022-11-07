@@ -1,51 +1,65 @@
 import React from "react";
 import { Grid, Typography, Rating } from "@mui/material";
 import { theme } from "../../../theme/theme";
+import { Link } from "react-router-dom";
 
 const SearchRightBar = ({ products }) => {
   return (
-    <Grid container item xs={9} spacing={1}>
+    <Grid container item xs={10} display="flex" flexDirection="column">
       <Typography variant="h6">RESULTS</Typography>
-      {products.map((product, index) => {
-        const { title, price, ratingNum, thumbnail, rating } = product;
-        return (
-          <Grid item display="flex" gap={2} key={index} sx={{ mb: 3 }}>
-            <img
-              src={`/images/${thumbnail}`}
-              alt="good"
-              style={{
-                maxWidth: "200px",
-                maxHeight: "200px",
-                objectFit: "container",
-              }}
-            ></img>
-            <Grid item>
-              <Typography>{title}</Typography>
-              <Grid display="flex" alignItems="center">
-                <Rating
-                  name="read-only"
-                  value={rating}
-                  readOnly
-                  precision={0.5}
-                  size="small"
-                />
-                <Typography variant="body2" component="p" marginLeft={1.5}>
-                  {ratingNum}
-                </Typography>
+      <Grid>
+        {products.map((product, index) => {
+          const { title, price, ratingNum, thumbnail, rating } = product;
+          return (
+            <Link
+              style={{ color: "black" }}
+              to={`/detail/${product.id}`}
+              key={index}
+            >
+              <Grid item display="flex" gap={3} sx={{ mb: 3 }}>
+                <img
+                  src={`/images/${thumbnail}`}
+                  alt="good"
+                  style={{
+                    minWidth: "200px",
+                    maxWidth: "200px",
+                    maxHeight: "200px",
+                    objectFit: "contain",
+                  }}
+                ></img>
+                <Grid item display="flex" flexDirection="column" gap={1}>
+                  <Typography>{title}</Typography>
+                  <Grid display="flex" alignItems="center">
+                    <Rating
+                      name="read-only"
+                      value={rating}
+                      readOnly
+                      precision={0.5}
+                      size="small"
+                    />
+                    <Typography variant="body2" component="p" marginLeft={1.5}>
+                      {ratingNum}
+                    </Typography>
+                  </Grid>
+                  <Typography variant="h5" fontWeight="bold">
+                    $
+                    {price
+                      .toFixed(2)
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: theme.palette.grey.canada }}
+                  >
+                    Ships to Canada
+                  </Typography>
+                </Grid>
               </Grid>
-              <Typography variant="h5" fontWeight="bold">
-                ${price}
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ color: theme.palette.grey.canada }}
-              >
-                Ships to Canada
-              </Typography>
-            </Grid>
-          </Grid>
-        );
-      })}
+            </Link>
+          );
+        })}
+      </Grid>
     </Grid>
   );
 };

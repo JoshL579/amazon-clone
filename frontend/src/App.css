@@ -24,3 +24,7 @@
 .search__keyword__container {
   display: none;
 }
+
+.search__keyword {
+  cursor: pointer;
+}
