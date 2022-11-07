@@ -15,6 +15,7 @@ export const theme = createTheme({
       main: "#f3f3f3",
       contrastText: "#000",
       header: "#F5F6F6",
+      canada: "#c0c0c0",
     },
     blue: {
       main: "#0066c0",

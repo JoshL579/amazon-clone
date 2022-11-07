@@ -21,6 +21,6 @@
 
 /* to control the search drop down open and close */
 
-.search__keyword {
+.search__keyword__container {
   display: none;
 }

@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SearchLeftBar from "./components/SearchLeftBar";
 import SearchRightBar from "./components/SearchRightBar";
 import SearchTopBar from "./components/SearchTopBar";
@@ -7,6 +7,9 @@ import History from "../Home/components/History";
 import SignInBtn from "../Home/components/SignInBtn";
 import BtnGroup from "./components/BtnGroup";
 import BackToTop from "./components/BackToTop";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSearchResult } from "../../store/keywordReducer";
+import { useSearchParams } from "react-router-dom";
 
 const styles = {
   flex: {
@@ -22,14 +25,25 @@ const styles = {
   },
 };
 
-const Search = () => {
+const Search = (props) => {
+  const dispatch = useDispatch();
+  const { searchProducts } = useSelector((store) => store.keyword);
+  const [searchParams] = useSearchParams()
+  const keywords = searchParams.get("keywords")
+
+  useEffect(() => {
+    dispatch(fetchSearchResult(keywords));
+  }, []);
+
   return (
     <>
       <SearchTopBar />
       <Grid container sx={styles.container}>
-        <SearchLeftBar />
-        <SearchRightBar />
-        {/* <BtnGroup /> */}
+        <Grid display="flex">
+          <SearchLeftBar />
+          <SearchRightBar products={searchProducts} />
+        </Grid>
+        <BtnGroup />
         {/* <History /> */}
         <SignInBtn />
         <BackToTop />
