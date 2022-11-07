@@ -61,7 +61,7 @@ export const SearchBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [keywordInput, setKeywordInput] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -85,8 +85,33 @@ export const SearchBar = () => {
     if (!keywordInput) {
       return;
     }
+    setIsOpen(false);
     navigate(`/search?keywords=${keywordInput}`);
     dispatch(fetchSearchResult(keywordInput));
+  };
+
+  const onClickDropdownToy = () => {
+    setKeywordInput("toy");
+    setIsOpen(false);
+    navigate(`/search?keywords=toy`);
+  };
+
+  const onClickDropdownPc = () => {
+    setKeywordInput("computer");
+    setIsOpen(false);
+    navigate(`/search?keywords=computer`);
+  };
+
+  const onClickDropdownBook = () => {
+    setKeywordInput("book");
+    setIsOpen(false);
+    navigate(`/search?keywords=book`);
+  };
+
+  const onClickDropdownMisc = () => {
+    setKeywordInput("misc");
+    setIsOpen(false);
+    navigate(`/search?keywords=misc`);
   };
 
   return (
@@ -139,7 +164,7 @@ export const SearchBar = () => {
       <Grid
         sx={{
           position: "absolute",
-          bottom: "-72px",
+          bottom: "-95px",
           left: "293px",
           width: "calc(100% - 700px)",
           zIndex: "999",
@@ -149,15 +174,34 @@ export const SearchBar = () => {
         <Paper
           sx={{ width: "100%", pt: "0.3rem", pb: "0.3rem", borderRadius: 0 }}
         >
-          <Grid className="search__keyword">
-            <Typography sx={{ textAlign: "left", pl: "0.2rem" }}>
+          <Grid>
+            <Typography
+              onClick={onClickDropdownToy}
+              sx={{ textAlign: "left", pl: "0.2rem" }}
+              className="search__keyword"
+            >
               toy
             </Typography>
-            <Typography sx={{ textAlign: "left", pl: "0.2rem" }}>
+            <Typography
+              onClick={onClickDropdownPc}
+              sx={{ textAlign: "left", pl: "0.2rem" }}
+              className="search__keyword"
+            >
               computer
             </Typography>
-            <Typography sx={{ textAlign: "left", pl: "0.2rem" }}>
+            <Typography
+              onClick={onClickDropdownBook}
+              sx={{ textAlign: "left", pl: "0.2rem" }}
+              className="search__keyword"
+            >
               book
+            </Typography>
+            <Typography
+              onClick={onClickDropdownMisc}
+              sx={{ textAlign: "left", pl: "0.2rem" }}
+              className="search__keyword"
+            >
+              misc
             </Typography>
           </Grid>
         </Paper>

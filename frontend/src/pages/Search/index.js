@@ -28,8 +28,10 @@ const styles = {
 const Search = (props) => {
   const dispatch = useDispatch();
   const { searchProducts } = useSelector((store) => store.keyword);
-  const [searchParams] = useSearchParams()
-  const keywords = searchParams.get("keywords")
+  const [searchParams] = useSearchParams();
+  const keywords = searchParams.get("keywords");
+
+  // console.log(searchParams);
 
   useEffect(() => {
     dispatch(fetchSearchResult(keywords));
@@ -37,9 +39,9 @@ const Search = (props) => {
 
   return (
     <>
-      <SearchTopBar />
+      <SearchTopBar products={searchProducts} keywords={keywords} />
       <Grid container sx={styles.container}>
-        <Grid display="flex">
+        <Grid display="flex" justifyContent="center" sx={{ width: "100%" }}>
           <SearchLeftBar />
           <SearchRightBar products={searchProducts} />
         </Grid>

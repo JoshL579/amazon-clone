@@ -108,7 +108,6 @@ const SingleProduct = () => {
         container
         display="flex"
         justifyContent="space-between"
-        // spacing={3}
         sx={styles.container}
         direction="row"
       >

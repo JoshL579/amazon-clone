@@ -19,7 +19,7 @@ const styles = {
   },
 };
 
-const SearchTopBar = () => {
+const SearchTopBar = ({ products, keywords }) => {
   const [age, setAge] = React.useState("");
 
   const handleChange = (event) => {
@@ -27,11 +27,11 @@ const SearchTopBar = () => {
   };
   return (
     <Grid item sx={styles.width}>
-      <Paper sx={styles.flex} elevation={2}>
+      <Paper sx={(styles.flex, { p: "0.5rem" })} elevation={2}>
         <Typography>
-          1-16 of 123 results for "iphone external battery"
+          1-20 of {products.length} results for {keywords}
         </Typography>
-        <FormControl sx={{ minWidth: 120 }}>
+        {/* <FormControl sx={{ minWidth: 120 }}>
           <Select
             displayEmpty
             onChange={handleChange}
@@ -47,7 +47,7 @@ const SearchTopBar = () => {
             <MenuItem value={10}>Sort by:Avg. Customer Review</MenuItem>
             <MenuItem value={10}>Newest Arrivals</MenuItem>
           </Select>
-        </FormControl>
+        </FormControl> */}
       </Paper>
     </Grid>
   );

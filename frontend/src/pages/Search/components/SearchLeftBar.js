@@ -13,22 +13,15 @@ import {
 
 const SearchLeftBar = () => {
   return (
-    <Grid
-      container
-      item
-      xs={3}
-      display="flex"
-      flexDirection="column"
-      spacing={2}
-    >
-      <Grid item>
+    <Grid item xs={2} display="flex" flexDirection="column">
+      <Grid sx={{ mb: 2 }}>
         <Typography variant="subtitle1" fontWeight="bold">
           Customer Reviews
         </Typography>
-        <Grid item display="flex" flexDirection="column">
+        <Grid display="flex" flexDirection="column">
           {ratings.map((rating, index) => {
             return (
-              <Grid item display="flex" key={index}>
+              <Grid display="flex" key={index}>
                 <Rating
                   size="medium"
                   name="read-only"
@@ -41,21 +34,8 @@ const SearchLeftBar = () => {
           })}
         </Grid>
       </Grid>
-      {/* <Grid item>
-        <Typography variant="subtitle1">Brand</Typography>
-        <FormGroup>
-          {brands.map((brand, index) => {
-            return (
-              <FormControlLabel
-                control={<Checkbox sx={{ paddingBottom: 0, paddingTop: 0 }} />}
-                label={brand.brand}
-                key={index}
-              />
-            );
-          })}
-        </FormGroup>
-      </Grid> */}
-      <Grid item>
+
+      <Grid>
         <Typography variant="subtitle1" fontWeight="bold">
           Price
         </Typography>
@@ -66,29 +46,6 @@ const SearchLeftBar = () => {
             </Typography>
           );
         })}
-        {/* <Grid item display="flex" alignItems="center">
-          <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">$</InputAdornment>
-              ),
-            }}
-            placeholder="MIN"
-            sx={{ width: "5rem", "& input": { padding: 0 } }}
-          ></TextField>
-          <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">$</InputAdornment>
-              ),
-            }}
-            placeholder="MAX"
-            sx={{ width: "5rem", "& input": { padding: 0 } }}
-          ></TextField>
-          <Button variant="outlined" sx={{ padding: 0 }}>
-            Go
-          </Button>
-        </Grid> */}
       </Grid>
     </Grid>
   );
@@ -112,25 +69,6 @@ const ratings = [
     value: 1,
   },
 ];
-
-// const brands = [
-//   {
-//     id: 1,
-//     brand: "Acer",
-//   },
-//   {
-//     id: 2,
-//     brand: "LG",
-//   },
-//   {
-//     id: 3,
-//     brand: "SAMSUNG",
-//   },
-//   {
-//     id: 4,
-//     brand: "ASUS",
-//   },
-// ];
 
 const prices = [
   {
