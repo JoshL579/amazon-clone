@@ -1,5 +1,11 @@
 # Amazon.com Clone
-React Frontend + Muti Backend (Node Express currently. Will add Python & Java version in future) + PostgreSQL
+
+Clone of Amazon.com is full stack web application built in a team of two that allows users to browse products, add items to the cart, and purchase
+
+## Stacks/Technologies
+
+- Front-End: ReactJs, MUI, Redux + ReduxToolkit + RTK Query
+- Back-End: NodeJs, ExpressJs, Prisma, PostgreSQL (will add Python & Java version in future)
 
 ## Demo
 
