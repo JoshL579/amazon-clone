@@ -14,31 +14,6 @@ Clone of Amazon.com is full stack web application built in a team of two that al
 - Home Page
 
     ![home-sample](./demo/images/home-sample.png)
-
-## Install
-
-#### Frontend
-
-- `cd frontend && yarn install`
-
-#### Backend
-
-- node: `cd backend/node && yarn install`
-
-#### Datebase
-
-- Generate Schema: `prisma generate`
-
-- Update Datebase: `prisma db push`
-
-## Usage
-
-- Frontend: `cd frontend && yarn start`
-
-- Backend(Node): `cd backend/backend && yarn start`
-
-- Database Setup: 
-    - create `.env` file and put it in `backend/node`, write `db uri` in it, sample: `DATABASE_URL="postgres://username:password@host:port/database"`
     
 ## Features
 
@@ -66,6 +41,27 @@ Clone of Amazon.com is full stack web application built in a team of two that al
 
 ![delete (1)](https://user-images.githubusercontent.com/93957228/200662043-e475f4e7-3a65-4411-857e-c2824e79d689.gif)
 
+## Install
 
+#### Frontend
 
+- `cd frontend && yarn install`
 
+#### Backend
+
+- node: `cd backend/node && yarn install`
+
+#### Datebase
+
+- Generate Schema: `prisma generate`
+
+- Update Datebase: `prisma db push`
+
+## Usage
+
+- Frontend: `cd frontend && yarn start`
+
+- Backend(Node): `cd backend/backend && yarn start`
+
+- Database Setup: 
+    - create `.env` file and put it in `backend/node`, write `db uri` in it, sample: `DATABASE_URL="postgres://username:password@host:port/database"`
